@@ -1,0 +1,162 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--        <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">-->
+
+    {% block load_css %} {% endblock load_css %}
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+          integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <title> {% block title %} Tranning System {% endblock title %}</title>
+</head>
+
+<body class="theme-Circle controller-welcome action-index">
+
+<div id="wrapper">
+
+    <div class="flyout-menu js-flyout-menu">
+
+        <div class="flyout-menu__search">
+            <form action="/search" accept-charset="UTF-8" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;"/>
+
+                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>
+                <input type="text" name="q" id="flyout-search" class="small js-search-input" placeholder="Search"/>
+            </form>
+        </div>
+
+        <div class="flyout-menu__avatar flyout-menu__avatar--no-avatar">
+            <a class="user active" href="/users/908">hoang.minh.hung</a>
+        </div>
+
+        <h3>General</h3>
+        <span class="js-general-menu"></span>
+
+        <span class="js-sidebar flyout-menu__sidebar"></span>
+
+        <h3>Profile</h3>
+        <span class="js-profile-menu"></span>
+
+    </div>
+
+    <div id="wrapper2">
+        <div id="wrapper3">
+            <div id="top-menu">
+                <div id="account">
+                    <ul>
+                        <li><a class="my-account" href="/profile">My account</a></li>
+                        <li><a class="logout" rel="nofollow" data-method="post" href="/logout">Sign out</a></li>
+                    </ul>
+                </div>
+                <div id="loggedas">Logged in as <a class="user active" href="/users/908">hoang.minh.hung</a></div>
+                <ul>
+                    <li><a class="home" href="/">Home</a></li>
+                    <li><a class="my-page" href="/my/page">My page</a></li>
+                    <li><a class="projects" href="/projects">Projects</a></li>
+                </ul>
+            </div>
+
+            <div id="header">
+
+                <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
+
+                <div id="quick-search">
+                    <form action="/search" accept-charset="UTF-8" method="get">
+                        <input name="utf8" type="hidden" value="&#x2713;"/>
+                        <input type="hidden" name="scope"/>
+
+                        <label for='q'>
+                            <a accesskey="4" href="/search">Search</a>:
+                        </label>
+                        <input type="text" name="q" id="q" size="20" class="small" accesskey="f"/>
+                    </form>
+                    <div id="project-jump" class="drdn"><span class="drdn-trigger">Jump to a project...</span>
+                        <div class="drdn-content">
+                            <div class="quick-search">
+                                <input type="text" name="q" id="projects-quick-search" value="" class="autocomplete"
+                                       data-automcomplete-url="/projects/autocomplete.js?jump=welcome"
+                                       autocomplete="off"/>
+                            </div>
+                            <div class="drdn-items projects selection"><a title="python_naitei_1_sts"
+                                                                          href="/projects/python_naitei_1_sts?jump=welcome"><span
+                                    style="padding-left:0px;">python_naitei_1_sts</span></a></div>
+                            <div class="drdn-items all-projects selection"><a href="/projects?jump=welcome">All
+                                Projects</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1>Training System</h1>
+
+            </div>
+
+            <div id="main" class="nosidebar">
+                <div id="sidebar">
+
+                </div>
+
+                <div id="content">
+
+                    {% block content %} {% endblock content %}
+
+                    <div class="splitcontentleft">
+                        <div class="wiki">
+
+                        </div>
+
+                    </div>
+
+                    <div class="splitcontentright">
+
+                    </div>
+
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ajax-indicator" style="display:none;"><span>Loading...</span></div>
+        <div id="ajax-modal" style="display:none;"></div>
+
+        <div id="footer">
+            <div class="bgl">
+                <div class="bgr">
+                    Developed by <a href="#">Traning System Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optionockal JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+{% block load_js %} {% endblock load_js %}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!--<script src="{% static 'user/search.js' %}"></script>-->
+</body>
+
+</html>
