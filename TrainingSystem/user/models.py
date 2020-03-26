@@ -14,3 +14,12 @@ class User(AbstractUser):
     )
 
     role = models.IntegerField(choices=ROLE, default=0)
+
+    class Meta:
+        permissions = [
+            ("admin_permission", "login as admin"),
+            ("trainer_permission", "login as trainer"),
+            ("trainee_permission", "login as trainee"),
+        ]
+
+

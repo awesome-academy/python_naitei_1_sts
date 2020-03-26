@@ -1,17 +1,18 @@
-from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import Permission
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template.context_processors import request
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
-from .forms import UserRegisterForm, UserUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, UpdateTrainerForm
 from django.views import View
-import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 from .models import User
@@ -59,7 +60,10 @@ def activate(request, uidb64, token):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
+        permission = Permission.objects.get(name='login as trainee')
+        user.user_permissions.add(permission)
         user.save()
+
         # login(request, user)
         # return redirect('home')
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
@@ -70,12 +74,56 @@ def activate(request, uidb64, token):
 @login_required
 def profile(request):
     if request.method == "POST":
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        if u_form.is_valid():
-            u_form.save()
+        update_form = UserUpdateForm(request.POST, instance=request.user)
+        if update_form.is_valid():
+            update_form.save()
             messages.success(request, f'Your profile has been updated!')
             return redirect('profile')
     else:
-        u_form = UserUpdateForm(instance=request.user)
-    context = {'u_form': u_form}
+        update_form = UserUpdateForm(instance=request.user)
+    context = {'update_form': update_form}
     return render(request, 'user/profile.html', context)
+
+
+class OtherProfile(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        user = User.objects.get(pk=pk)
+        context = {'user': user}
+        return render(request, 'user/other_profile.html', context)
+
+
+class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required = 'admin_permission'
+
+    def get(self, request, pk):
+        user = User.objects.get(pk=pk)
+        update_form = UpdateTrainerForm(instance=user)
+        if update_form.is_valid():
+            update_form.save()
+            messages.success(request, f'Your profile has been updated!')
+
+        context = {'update_form': update_form}
+        return render(request, 'user/update_trainer.html', context)
+
+    def post(self, request, pk):
+        user = User.objects.get(pk=pk)
+        update_form = UpdateTrainerForm(request.POST, instance=user)
+        if update_form.is_valid():
+            update_form.save()
+            role = update_form.cleaned_data['role']
+            print(role)
+            trainer_permission = Permission.objects.get(name='login as trainer')
+            admin_permission = Permission.objects.get(name='login as admin')
+            if role == 1:
+                user.user_permissions.add(trainer_permission)
+                user.user_permissions.remove(admin_permission)
+            elif role == 2:
+                user.user_permissions.add(trainer_permission)
+                user.user_permissions.add(admin_permission)
+            else:
+                user.user_permissions.remove(admin_permission)
+                user.user_permissions.remove(trainer_permission)
+            user.save()
+            print(user.get_all_permissions())
+            messages.success(request, f'Approved trainer success!')
+            return redirect('add-trainer', pk=user.id)
