@@ -7,6 +7,9 @@ class Course(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Subject(models.Model):
     name = models.CharField(max_length=100)
@@ -14,15 +17,24 @@ class Subject(models.Model):
     duration = models.PositiveIntegerField()
     trainer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Supervisor(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     trainer = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.trainer.first_name + " " + self.trainer.last_name
+
 
 class CourseSubject(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.course.name + " - " + self.subject.name
 
 
 class TraineeCourseSubject(models.Model):
