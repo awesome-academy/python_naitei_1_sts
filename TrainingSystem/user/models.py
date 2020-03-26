@@ -4,14 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    # first_name = models.CharField(max_length=50)
-    # last_name = models.CharField(max_length=50)
-    # username = models.CharField(max_length=50)
-    # password = models.CharField(max_length=30)
-    dob = models.DateField()
-    # email = models.EmailField()
-    phone = models.CharField(max_length=15)
-    # is_active = models.BooleanField(default=False)
+    dob = models.DateField(null=True)
+    phone = models.CharField(null=True, max_length=15)
 
     ROLE = (
         (0, 'trainee'),
