@@ -2,7 +2,7 @@
     background-color: #047afc;
 }
 
-ul li a:hover {
+ul li:not(.list-group-item) a:hover {
     color: white;
     text-decoration: none;
 }
@@ -13,7 +13,7 @@ ul li {
     padding-right: 0px;
 }
 
-ul li a {
+ul li:not(.list-group-item) a {
     color: black;
     display: block;
     margin: 0px 5px;

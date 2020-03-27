@@ -13,8 +13,8 @@
                         {% endif %} >
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.description.id_for_label }}">Desciption</label>
-                        <textarea type="text" class="form-control" id="{{ form.description.id_for_label }}"
+                        <label for="{{ form.description.id_for_label }}">Description</label>
+                        <textarea class="form-control" id="{{ form.description.id_for_label }}"
                                   placeholder="Enter course name" rows="10" {% if user.role == 0 %}
                                   disabled
                         {% endif %}>{{ course.description }}</textarea>
@@ -24,7 +24,11 @@
                     <label for="list_subject">Subject</label>
                     <ul class="list-group" id="list_subject">
                         {% for coursesubject in course.coursesubject_set.all %}
-                            <li class="list-group-item"><a href="#">{{ coursesubject.subject.name }}
+                            <li class="list-group-item"><a href="
+                                    {% if user.role == 1 %}
+                                        {% url 'subject-detail-trainee' coursesubject.subject.pk %}
+                                    {% elif user.role > 1 %}{% url 'subject-detail-trainer' coursesubject.subject.pk %}
+                                        {% endif %}">{{ coursesubject.subject.name }}
                                 - {{ coursesubject.subject.duration }} days</a> -
                                 <a href="#">
                                     {{ coursesubject.subject.trainer.username }}</a></li>
@@ -40,14 +44,14 @@
                 {% if user.role == 1 or user.role == 2 %}
                     <div class="col-sm-12 text-center">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="#">
+                        <a href="{% url 'course_member' course.pk %}">
                             <button type="button" class="btn btn-primary">View members</button>
                         </a>
                         <button type="button" class="btn btn-danger">Finish</button>
                     </div>
                 {% elif user.role == 0 %}
                     <div class="col-sm-12 text-center">
-                        <a href="#">
+                        <a href="{% url 'course_member' course.pk %}">
                             <button type="button" class="btn btn-primary">View members</button>
                         </a>
                         <a href="#">
