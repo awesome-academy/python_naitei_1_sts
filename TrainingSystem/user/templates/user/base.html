@@ -14,7 +14,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!--        <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'user/search.css' %}">
 
     {% block load_css %} {% endblock load_css %}
     <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -35,16 +35,18 @@
 
     <div class="flyout-menu js-flyout-menu">
 
-        <div class="flyout-menu__search">
-            <form action="/search" accept-charset="UTF-8" method="get">
-                <input name="utf8" type="hidden" value="&#x2713;"/>
-
-                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>
-                <input type="text" name="q" id="flyout-search" class="small js-search-input" placeholder="Search"/>
-            </form>
-        </div>
+{#        <div class="flyout-menu__search">#}
+            {#            <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
+            {#                {% csrf_token %}#}
+            {#                <input name="utf8" type="hidden" value="&#x2713;"/>#}
+            {#                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>#}
+            {#                <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input" placeholder="Search"#}
+            {#                       autocomplete="on"/>#}
+            {#            </form>#}
+{#        </div>#}
 
         <div class="flyout-menu__avatar flyout-menu__avatar--no-avatar">
+
             <a class="user active" href="/users/908">hoang.minh.hung</a>
         </div>
 
@@ -79,31 +81,41 @@
 
                 <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
 
-                <div id="quick-search">
-                    <form action="/search" accept-charset="UTF-8" method="get">
-                        <input name="utf8" type="hidden" value="&#x2713;"/>
-                        <input type="hidden" name="scope"/>
 
-                        <label for='q'>
-                            <a accesskey="4" href="/search">Search</a>:
-                        </label>
-                        <input type="text" name="q" id="q" size="20" class="small" accesskey="f"/>
+                <div id="quick-search">
+                    <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">
+                        {% csrf_token %}
+                        <input name="utf8" type="hidden" value="&#x2713;"/>
+                        <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>
+                        <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input"
+                               placeholder="Search"
+                               autocomplete="on"/>
                     </form>
-                    <div id="project-jump" class="drdn"><span class="drdn-trigger">Jump to a project...</span>
-                        <div class="drdn-content">
-                            <div class="quick-search">
-                                <input type="text" name="q" id="projects-quick-search" value="" class="autocomplete"
-                                       data-automcomplete-url="/projects/autocomplete.js?jump=welcome"
-                                       autocomplete="off"/>
-                            </div>
-                            <div class="drdn-items projects selection"><a title="python_naitei_1_sts"
-                                                                          href="/projects/python_naitei_1_sts?jump=welcome"><span
-                                    style="padding-left:0px;">python_naitei_1_sts</span></a></div>
-                            <div class="drdn-items all-projects selection"><a href="/projects?jump=welcome">All
-                                Projects</a></div>
-                        </div>
-                    </div>
                 </div>
+
+                {#                    <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
+                {#                        <input name="utf8" type="hidden" value="&#x2713;"/>#}
+                {#                        <input type="hidden" name="scope"/>#}
+                {##}
+                {#                        <label for='q'>#}
+                {#                            <a accesskey="4" href="/search">Search</a>:#}
+                {#                        </label>#}
+                {#                        <input type="text" name="q" id="q" size="20" class="small" accesskey="f"/>#}
+                {#                    </form>#}
+                {#                    <div id="project-jump" class="drdn"><span class="drdn-trigger">Jump to a project...</span>#}
+                {#                        <div class="drdn-content">#}
+                {#                            <div class="quick-search">#}
+                {#                                <input type="text" name="q" id="projects-quick-search" value="" class="autocomplete"#}
+                {#                                       data-automcomplete-url="/projects/autocomplete.js?jump=welcome"#}
+                {#                                       autocomplete="off"/>#}
+                {#                            </div>#}
+                {#                            <div class="drdn-items projects selection"><a title="python_naitei_1_sts"#}
+                {#                                                                          href="/projects/python_naitei_1_sts?jump=welcome"><span#}
+                {#                                    style="padding-left:0px;">python_naitei_1_sts</span></a></div>#}
+                {#                            <div class="drdn-items all-projects selection"><a href="/projects?jump=welcome">All#}
+                {#                                Projects</a></div>#}
+                {#                        </div>#}
+                {#                    </div>#}
 
                 <h1>Training System</h1>
 
@@ -146,6 +158,13 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+<script src="{% static 'user/search.js' %}"></script>
 
 <!-- Optionockal JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -159,7 +178,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<!--<script src="{% static 'user/search.js' %}"></script>-->
 </body>
 
 </html>

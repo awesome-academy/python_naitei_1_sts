@@ -13,10 +13,14 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .forms import UserRegisterForm, UserUpdateForm, UpdateTrainerForm
 from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
-
-# Create your views here.
 from .models import User
 from .token import account_activation_token
+from course.models import Course
+
+import json
+
+
+# Create your views here.
 
 
 def home(request):
@@ -111,7 +115,6 @@ class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
         if update_form.is_valid():
             update_form.save()
             role = update_form.cleaned_data['role']
-            print(role)
             trainer_permission = Permission.objects.get(name='login as trainer')
             admin_permission = Permission.objects.get(name='login as admin')
             if role == 1:
@@ -124,6 +127,24 @@ class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
                 user.user_permissions.remove(admin_permission)
                 user.user_permissions.remove(trainer_permission)
             user.save()
-            print(user.get_all_permissions())
             messages.success(request, f'Approved trainer success!')
             return redirect('add-trainer', pk=user.id)
+
+
+class Search(View):
+    def get(self, request):
+        keyword = request.GET['keyword']
+        course = Course.objects.filter(name__icontains=keyword)
+        return render(request, 'user/base.html', {'course': course, 'keyword': keyword}, )
+
+
+def autocompleteModel(request):
+    if request.is_ajax():
+        keyword = request.POST.get('inputSearch')
+        courses = Course.objects.filter(name__icontains=keyword)
+        results = map(lambda x: (x.name, '#'), courses)
+        data = json.dumps(list(results))
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

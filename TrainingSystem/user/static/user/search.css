@@ -1,0 +1,39 @@
+.dropdown-item:hover {
+    background-color: #047afc;
+}
+
+ul li a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+ul li a {
+    color: black;
+    display: block;
+    margin: 0px 5px;
+}
+
+.header_link {
+    text-decoration: none;
+}
+
+.header_link:hover {
+    background-color: #047afc;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
