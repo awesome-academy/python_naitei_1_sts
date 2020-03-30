@@ -139,8 +139,8 @@ class SubjectListView(generic.ListView):
                             INNER JOIN course_coursesubject cc on course_subject.id = cc.subject_id
                             INNER JOIN course_course cc2 on cc.course_id = cc2.id
                             INNER JOIN course_supervisor cs on cc2.id = cs.course_id
-                            WHERE cs.trainer_id = %s'''
-            return Subject.objects.raw(raw_query, params=[user.id])
+                            WHERE cs.trainer_id = %s OR course_subject.trainer_id = %s'''
+            return Subject.objects.raw(raw_query, params=[user.id, user.id])
             return None
 
 

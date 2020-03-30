@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.expressions import RawSQL
 from .models import Task
 from course.models import CourseSubject, TraineeCourseSubject
@@ -11,7 +13,7 @@ import datetime
 
 # Create your views here.
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = 'tasks'
     
@@ -29,12 +31,16 @@ class TaskListView(generic.ListView):
         return queryset
 
 
-class TaskCreateView(generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     form_class = TaskCreateForm
 
+    def get(self, request):
+        form = TaskCreateForm(request.user)
+        return render(request, 'task/task_form.html', {'form': form})
+
     def post(self, request):
-        form = TaskCreateForm(request.POST)
+        form = TaskCreateForm(request.user, request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
@@ -58,12 +64,21 @@ class TaskCreateView(generic.CreateView):
             return render(request, 'task/task_form.html', {'form': form})
 
 
-class TaskUpdateView(generic.UpdateView):
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskUpdateForm
     template_name_suffix = '_update_form'
+    success_url = reverse_lazy('task-list')
 
 
-class TaskDeleteView(generic.DeleteView):
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy('task-list')
+
+    def post(self, request, *args, **kwargs):
+        task = self.get_object()
+        user = request.user
+        trainee_task = TraineeTask.objects.filter(task=task, trainee=user)
+        trainee_task.delete()
+        self.delete(request, *args, *kwargs)
+        return HttpResponseRedirect(self.success_url)
