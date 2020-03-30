@@ -18,6 +18,9 @@ class Task(models.Model):
     )
     type = models.CharField(choices=TYPE, default='t', max_length=1)
 
+    def __str__(self):
+        return self.name
+
 
 class TraineeTask(models.Model):
     trainee = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,3 +33,6 @@ class TraineeTask(models.Model):
     )
 
     status = models.CharField(choices=STATUS, default='n', max_length=1)
+
+    def __str__(self):
+        return f'{self.task.name} - {self.trainee.first_name}'
