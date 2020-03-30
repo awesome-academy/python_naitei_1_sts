@@ -5,10 +5,45 @@
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-        {{ form|crispy }}
+        {{ form.name|as_crispy_field }}
+        {{ form.description|as_crispy_field }}
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.start_date|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+                {{ form.due_date|as_crispy_field }}
+            </div>
+        </div>
+        {{ form.course_subject|as_crispy_field }}
+        {{ form.type|as_crispy_field }}
     </fieldset>
     <div class="form-group">
         <button class="btn btn-outline-primary" type="submit">Add</button>
     </div>
 </form>
+{% endblock %}
+{% block load_js %}
+<script>
+    $(document).ready(function () {
+        $("#id_type").change(function () {
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+            console.log("Change!");
+            console.log(date);
+            if (this.value == "r") {
+                $('#id_start_date').val(date)
+                $('#id_due_date').val(date)
+                console.log("Disabling");
+                $("#id_start_date").attr('readonly', true).datepicker("destroy");
+                $("#id_due_date").attr('readonly', true).datepicker("destroy");
+            } else {
+                console.log("Enabling");
+                $("#id_start_date").attr('readonly', false).datepicker();
+                $("#id_due_date").attr('readonly', false).datepicker();
+            }
+        });
+        
+    });
+</script>
 {% endblock %}
