@@ -40,18 +40,17 @@
     <div class="flyout-menu js-flyout-menu">
 
 {#        <div class="flyout-menu__search">#}
-            {#            <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
-            {#                {% csrf_token %}#}
-            {#                <input name="utf8" type="hidden" value="&#x2713;"/>#}
-            {#                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>#}
-            {#                <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input" placeholder="Search"#}
-            {#                       autocomplete="on"/>#}
-            {#            </form>#}
-{#        </div>#}
+        {#            <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
+        {#                {% csrf_token %}#}
+        {#                <input name="utf8" type="hidden" value="&#x2713;"/>#}
+        {#                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>#}
+        {#                <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input" placeholder="Search"#}
+        {#                       autocomplete="on"/>#}
+        {#            </form>#}
+        {#        </div>#}
 
         <div class="flyout-menu__avatar flyout-menu__avatar--no-avatar">
-
-            <a class="user active" href="/users/908">hoang.minh.hung</a>
+            <a class="user active" href="/profile">{{ user.username }}</a>
         </div>
 
         <h3>General</h3>
@@ -73,11 +72,11 @@
                         <li><a class="logout" rel="nofollow" data-method="post" href="/logout">Sign out</a></li>
                     </ul>
                 </div>
-                <div id="loggedas">Logged in as <a class="user active" href="/users/908">hoang.minh.hung</a></div>
+                <div id="loggedas">Logged in as <a class="user active" href="/profile">{{ user.username }}</a></div>
                 <ul>
                     <li><a class="home" href="/">Home</a></li>
-                    <li><a class="my-page" href="/my/page">My page</a></li>
-                    <li><a class="projects" href="/projects">Projects</a></li>
+                    <li><a class="my-page" href="{% url 'task-list' %}">My Tasks</a></li>
+                    <li><a class="projects" href="{% url 'subject-list' %}">My Subjects</a></li>
                 </ul>
             </div>
 

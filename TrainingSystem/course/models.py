@@ -50,3 +50,5 @@ class TraineeCourseSubject(models.Model):
     )
     status = models.CharField(choices=STATUS, default='n', max_length=1)
 
+    def __str__(self):
+        return self.trainee.username + " - " + self.course_subject.__str__()
