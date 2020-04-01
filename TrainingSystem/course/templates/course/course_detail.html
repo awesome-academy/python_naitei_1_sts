@@ -56,6 +56,9 @@
                     <a href="{% url 'task-list' %}">
                         <button type="button" class="btn btn-primary">{% trans 'View activities' %}</button>
                     </a>
+                    <a href="/chat/{{ course.room_name }}">
+                        <button type="button" class="btn btn-primary">Chat</button>
+                    </a>
                 </div>
             </form>
         {% elif user.role == 0 %}
@@ -98,6 +101,9 @@
                     </a>
                     <a href="{% url 'task-list' %}">
                         <button type="button" class="btn btn-primary">{% trans 'View activities' %}</button>
+                    </a>
+                    <a href="/chat/{{ course.room_name }}">
+                        <button type="button" class="btn btn-primary">Chat</button>
                     </a>
                 </div>
             </div>
