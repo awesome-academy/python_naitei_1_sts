@@ -1,0 +1,160 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-10">
+                <h4><a href="{% url 'course_detail' course.pk %}">Course: {{ course.name }}</a></h4>
+                {% if user.role == 0 %}
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">DoB</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for member in course_members %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="#">{{ member.username }}</a></td>
+                                <td>{% if member.role == 0 %}Trainee{% elif member.role == 1 %}
+                                    Trainer{% elif member.role == 2 %}Admin{% endif %}</td>
+                                <td>{{ member.dob }}</td>
+                                <td>{{ member.email }}</td>
+                                <td>{{ member.phone }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif user.role == 1 or user.role == 2 %}
+                    <h5>Trainee</h5>
+                    <form class="form-inline" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <select name="trainee" class="form-control" id="{{ trainee_form.trainee.id_for_label }}">
+                                {% for member in trainee_form.trainee.field.queryset %}
+                                    <option value="{{ member.pk }}">{{ member.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-3">Add</button>
+                    </form>
+                    <div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <li class="text-success"> {{ message }} </li>
+                                    {% elif message.tags == 'error' %}
+                                        <li class="text-error"> {{ message }} </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <table class="table table-hover mt-3">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">DoB</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for member in course_trainee %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="#">{{ member.username }}</a></td>
+                                <td>Trainee</td>
+                                <td>{{ member.dob }}</td>
+                                <td>{{ member.email }}</td>
+                                <td>{{ member.phone }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input name="trainee_delete" value="{{ member.pk }}" hidden>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <h5>Trainer</h5>
+                    <form class="form-inline" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <select name="trainer" class="form-control" id="{{ trainer_form.trainer.id_for_label }}">
+                                {% for member in trainer_form.trainer.field.queryset %}
+                                    <option value="{{ member.pk }}">{{ member.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-3">Add</button>
+                    </form>
+                    <div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if message.tags == 'info' %}
+                                        <li class=" text-success "> {{ message }} </li>
+                                    {% elif message.tags == 'warning' %}
+                                        <li class=" text-danger "> {{ message }} </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <table class="table table-hover mt-3">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">DoB</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for member in course_trainer %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="#">{{ member.username }}</a></td>
+                                <td>{% if member.role == 0 %}Trainee{% elif member.role == 1 %}
+                                    Trainer{% elif member.role == 2 %}Admin{% endif %}</td>
+                                <td>{{ member.dob }}</td>
+                                <td>{{ member.email }}</td>
+                                <td>{{ member.phone }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input name="trainer_delete" value="{{ member.pk }}" hidden>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

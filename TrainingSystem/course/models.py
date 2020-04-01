@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from user.models import User
 # Create your models here.
@@ -40,7 +42,7 @@ class CourseSubject(models.Model):
 class TraineeCourseSubject(models.Model):
     course_subject = models.ForeignKey(CourseSubject, on_delete=models.CASCADE)
     trainee = models.ForeignKey(User, on_delete=models.CASCADE)
-    start_date = models.DateField()
+    start_date = models.DateField(default=date.today)
     is_active = models.BooleanField(default=False)
 
     STATUS = (

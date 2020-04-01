@@ -1,7 +1,6 @@
 {% load static %}
 <!Doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -27,18 +26,20 @@
           integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
     <title> {% block title %} Tranning System {% endblock title %}</title>
 </head>
-
 <body class="theme-Circle controller-welcome action-index">
-
 <div id="wrapper">
-
     <div class="flyout-menu js-flyout-menu">
-
 {#        <div class="flyout-menu__search">#}
         {#            <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
         {#                {% csrf_token %}#}
@@ -48,21 +49,15 @@
         {#                       autocomplete="on"/>#}
         {#            </form>#}
         {#        </div>#}
-
         <div class="flyout-menu__avatar flyout-menu__avatar--no-avatar">
             <a class="user active" href="/profile">{{ user.username }}</a>
         </div>
-
         <h3>General</h3>
         <span class="js-general-menu"></span>
-
         <span class="js-sidebar flyout-menu__sidebar"></span>
-
         <h3>Profile</h3>
         <span class="js-profile-menu"></span>
-
     </div>
-
     <div id="wrapper2">
         <div id="wrapper3">
             <div id="top-menu">
@@ -79,12 +74,8 @@
                     <li><a class="projects" href="{% url 'subject-list' %}">My Subjects</a></li>
                 </ul>
             </div>
-
             <div id="header">
-
                 <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
-
-
                 <div id="quick-search">
                     <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">
                         {% csrf_token %}
@@ -95,7 +86,6 @@
                                autocomplete="on"/>
                     </form>
                 </div>
-
                 {#                    <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
                 {#                        <input name="utf8" type="hidden" value="&#x2713;"/>#}
                 {#                        <input type="hidden" name="scope"/>#}
@@ -119,39 +109,25 @@
                 {#                                Projects</a></div>#}
                 {#                        </div>#}
                 {#                    </div>#}
-
                 <h1>Training System</h1>
-
             </div>
-
             <div id="main" class="nosidebar">
                 <div id="sidebar">
-
                 </div>
-
                 <div id="content">
-
                     {% block content %} {% endblock content %}
-
                     <div class="splitcontentleft">
                         <div class="wiki">
-
                         </div>
-
                     </div>
-
                     <div class="splitcontentright">
-
                     </div>
-
                     <div style="clear:both;"></div>
                 </div>
             </div>
         </div>
-
         <div id="ajax-indicator" style="display:none;"><span>Loading...</span></div>
         <div id="ajax-modal" style="display:none;"></div>
-
         <div id="footer">
             <div class="bgl">
                 <div class="bgr">
@@ -171,17 +147,16 @@
 
 <!-- Optionockal JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous">
-</script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+{#<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="#}
+{#        crossorigin="anonymous">#}
+{#</script>#}
+{#<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"#}
+{#        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>#}
+{##}
+{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"#}
+{#        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"#}
+{#        crossorigin="anonymous"></script>#}
 <!--<script src="{% static 'user/search.js' %}"></script>-->
 {% block load_js %} {% endblock load_js %}
 </body>
-
 </html>
