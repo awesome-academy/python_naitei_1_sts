@@ -17,6 +17,7 @@ from .models import User
 from .token import account_activation_token
 from course.models import Course
 
+from django.utils.translation import gettext as _
 import json
 
 
@@ -35,7 +36,7 @@ def register(request):
             User.is_active = False
             User.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your account.'
+            mail_subject = _('Activate your account.')
             message = render_to_string('user/acc_active_email.html', {
                 'user': User,
                 'domain': current_site.domain,
@@ -47,7 +48,7 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return HttpResponse(_('Please confirm your email address to complete the registration'))
             # form.save()
             # messages.success(request, f'Your account has been created! You are now able to log in.')
             # return redirect('login')
@@ -70,9 +71,9 @@ def activate(request, uidb64, token):
 
         # login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse(_('Thank you for your email confirmation. Now you can login your account.'))
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse(_('Activation link is invalid!'))
 
 
 @login_required
@@ -81,7 +82,7 @@ def profile(request):
         update_form = UserUpdateForm(request.POST, instance=request.user)
         if update_form.is_valid():
             update_form.save()
-            messages.success(request, f'Your profile has been updated!')
+            messages.success(request, _(f'Your profile has been updated!'))
             return redirect('profile')
     else:
         update_form = UserUpdateForm(instance=request.user)
@@ -104,7 +105,7 @@ class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
         update_form = UpdateTrainerForm(instance=user)
         if update_form.is_valid():
             update_form.save()
-            messages.success(request, f'Your profile has been updated!')
+            messages.success(request, _(f'Your profile has been updated!'))
 
         context = {'update_form': update_form}
         return render(request, 'user/update_trainer.html', context)
@@ -127,7 +128,7 @@ class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
                 user.user_permissions.remove(admin_permission)
                 user.user_permissions.remove(trainer_permission)
             user.save()
-            messages.success(request, f'Approved trainer success!')
+            messages.success(request, _(f'Approved trainer success!'))
             return redirect('add-trainer', pk=user.id)
 
 

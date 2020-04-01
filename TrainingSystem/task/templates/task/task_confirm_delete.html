@@ -1,14 +1,15 @@
 {% extends "user/base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Deleting task</legend>
+        <legend class="border-bottom mb-4">{% trans 'Deleting task' %}</legend>
     </fieldset>
     <div class="form-group">
-        <p>Do you want to delete task "{{ object }}"?</p>
-        <button class="btn btn-outline-danger" type="submit">Delete</button>
+        <p>{% trans 'Do you want to delete task' %} "{{ object }}"?</p>
+        <button class="btn btn-outline-danger" type="submit">{% trans 'Delete' %}</button>
     </div>
 </form>
 {% endblock %}

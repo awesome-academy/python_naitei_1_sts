@@ -1,31 +1,32 @@
 {% extends 'user/base.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-sm-10">
-                <h4><a href="{% url 'course_detail' course.pk %}">Course: {{ course.name }}</a></h4>
+                <h4><a href="{% url 'course_detail' course.pk %}">{% trans 'Course' %}: {{ course.name }}</a></h4>
                 {% if user.role == 0 %}
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">DoB</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">{% trans 'Name' %}</th>
+                            <th scope="col">{% trans 'Username' %}</th>
+                            <th scope="col">{% trans 'Role' %}</th>
+                            <th scope="col">{% trans 'DoB' %}</th>
+                            <th scope="col">{% trans 'Email' %}</th>
+                            <th scope="col">{% trans 'Phone' %}</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for member in course_members %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
-                                <td><a href="#">{{ member.username }}</a></td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.username }}</a></td>
                                 <td>{% if member.role == 0 %}Trainee{% elif member.role == 1 %}
-                                    Trainer{% elif member.role == 2 %}Admin{% endif %}</td>
+                                    {% trans 'Trainer' %}{% elif member.role == 2 %}{% trans 'Admin' %}{% endif %}</td>
                                 <td>{{ member.dob }}</td>
                                 <td>{{ member.email }}</td>
                                 <td>{{ member.phone }}</td>
@@ -34,7 +35,7 @@
                         </tbody>
                     </table>
                 {% elif user.role == 1 or user.role == 2 %}
-                    <h5>Trainee</h5>
+                    <h5>{% trans 'Trainee' %}</h5>
                     <form class="form-inline" method="post">
                         {% csrf_token %}
                         <div class="form-group">
@@ -63,12 +64,12 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">DoB</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">{% trans 'Name' %}</th>
+                            <th scope="col">{% trans 'Username' %}</th>
+                            <th scope="col">{% trans 'Role' %}</th>
+                            <th scope="col">{% trans 'DoB' %}</th>
+                            <th scope="col">{% trans 'Email' %}</th>
+                            <th scope="col">{% trans 'Phone' %}</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -76,9 +77,9 @@
                         {% for member in course_trainee %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
-                                <td><a href="#">{{ member.username }}</a></td>
-                                <td>Trainee</td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.username }}</a></td>
+                                <td>{% trans 'Trainee' %}</td>
                                 <td>{{ member.dob }}</td>
                                 <td>{{ member.email }}</td>
                                 <td>{{ member.phone }}</td>
@@ -86,7 +87,7 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         <input name="trainee_delete" value="{{ member.pk }}" hidden>
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{% trans 'Delete' %}</button>
                                     </form>
                                 </td>
                             </tr>
@@ -103,7 +104,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary ml-3">Add</button>
+                        <button type="submit" class="btn btn-primary ml-3">{% trans 'Add' %}</button>
                     </form>
                     <div>
                         {% if messages %}
@@ -122,12 +123,12 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">DoB</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">{% trans 'Name' %}</th>
+                            <th scope="col">{% trans 'Username' %}</th>
+                            <th scope="col">{% trans 'Role' %}</th>
+                            <th scope="col">{% trans 'DoB' %}</th>
+                            <th scope="col">{% trans 'Email' %}</th>
+                            <th scope="col">{% trans 'Phone' %}</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -135,10 +136,10 @@
                         {% for member in course_trainer %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="#">{{ member.first_name }} {{ member.last_name }}</a></td>
-                                <td><a href="#">{{ member.username }}</a></td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.first_name }} {{ member.last_name }}</a></td>
+                                <td><a href="{% url 'view-profile' member.pk %}">{{ member.username }}</a></td>
                                 <td>{% if member.role == 0 %}Trainee{% elif member.role == 1 %}
-                                    Trainer{% elif member.role == 2 %}Admin{% endif %}</td>
+                                    {% trans 'Trainer' %}{% elif member.role == 2 %}{% trans 'Admin' %}{% endif %}</td>
                                 <td>{{ member.dob }}</td>
                                 <td>{{ member.email }}</td>
                                 <td>{{ member.phone }}</td>
@@ -146,7 +147,7 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         <input name="trainer_delete" value="{{ member.pk }}" hidden>
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{% trans 'Delete' %}</button>
                                     </form>
                                 </td>
                             </tr>

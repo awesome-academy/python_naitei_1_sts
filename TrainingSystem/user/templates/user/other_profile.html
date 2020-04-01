@@ -5,9 +5,10 @@
         <div class="content-section">
             <div class="media">
                 <div class="media-body ml-2">
-                    <h2 class="account-heading">{{ user.first_name }}{{ user.last_name }}</h2>
+                    <h2 class="account-heading text-primary">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <span class="badge badge-pill badge-success h6">{% if user.role == 0 %}Trainee{% elif user.role == 1 %}Trainer{% elif user.role == 2 %}Admin{% endif %}</span>
                     <p class="text-secondary">{{ user.dob }}</p>
-                    <p class="text-secondary">{{ user.email }}</p>
+                    <p class="text-secondary"><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
                     <p class="text-secondary">{{ user.phone }}</p>
                 </div>
             </div>

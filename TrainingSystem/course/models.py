@@ -1,6 +1,8 @@
 from datetime import date
 
 from django.db import models
+from django.urls import reverse
+
 from user.models import User
 # Create your models here.
 
@@ -8,6 +10,12 @@ from user.models import User
 class Course(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
+    STATUS = (
+        ('i', 'in progress'),
+        ('f', 'finish'),
+        ('n', 'not yet'),
+    )
+    status = models.CharField(choices=STATUS, default='n', max_length=1)
 
     def __str__(self):
         return self.name
