@@ -1,0 +1,39 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+    <div class="mt-4 mb-4">
+        <h1 class="mr-4" style="display: inline;">Subject List</h1>
+        <a class="btn btn-outline-primary mb-3" href="{% url 'subject-create' %}">Add</a>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Trainer</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+
+            <td>
+                {% if user.role != 0 %}
+                    <a style="color: black; text-decoration: none;"
+                       href="{% url 'subject-detail-trainer' subject.pk %}">{{ subject.name }}</a>
+                {% else %}
+                    <a style="color: black; text-decoration: none;"
+                       href="{% url 'subject-detail-trainee' subject.pk %}">{{ subject.name }}</a>
+                {% endif %}
+            </td>
+
+            <td>{{ subject.description }}</td>
+            <td>{{ subject.duration }}</td>
+            <td><a href="{% url 'view-profile' subject.trainer.pk %}">{{ subject.trainer.username }}</a></td>
+            <td><a class="btn btn-danger" href="{% url 'subject-delete' subject.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
