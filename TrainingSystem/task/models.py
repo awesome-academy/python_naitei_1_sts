@@ -35,4 +35,4 @@ class TraineeTask(models.Model):
     status = models.CharField(choices=STATUS, default='n', max_length=1)
 
     def __str__(self):
-        return f'{self.task.name} - {self.trainee.first_name}'
+        return f'{self.task.name} - {self.trainee.username}'
