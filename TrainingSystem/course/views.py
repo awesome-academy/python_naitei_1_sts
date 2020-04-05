@@ -1,36 +1,44 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
-from symbol import parameters
-
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .models import Subject
-from .forms import SubjectCreateForm, SubjectUpdateForm
-
+from django.utils.translation import gettext as _
 # Create your views here.
-from django.urls import resolve
 from django.views import generic, View
 
-from course.forms import CourseTraineeAddForm, SupervisorAddForm, CourseTraineeDeleteForm, SupervisorDeleteForm
+from course.forms import CourseTraineeAddForm, SupervisorAddForm, CourseTraineeDeleteForm, SupervisorDeleteForm, \
+    CourseUpdateForm
 from course.models import Course, TraineeCourseSubject, Supervisor, Subject, CourseSubject
 from user.models import User
+from .forms import SubjectCreateForm, SubjectUpdateForm
 
 
 class CourseDetailView(LoginRequiredMixin, generic.DetailView):
     model = Course
 
-    # def post(self, request):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        course_update_form = CourseUpdateForm()
+        context['course_update_form'] = course_update_form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        course = get_object_or_404(Course, pk=kwargs['pk'])
+        form = CourseUpdateForm(request.POST)
+        if form.is_valid():
+            course.name = form.cleaned_data['name']
+            course.description = form.cleaned_data['description']
+            course.status = form.cleaned_data['status']
+            course.save()
+        return redirect("course_detail", pk=kwargs['pk'])
 
 
 class CourseMemberView(LoginRequiredMixin, View):
     template_name = 'course/course_member.html'
 
     def get(self, request, pk):
-        course = Course.objects.get(pk=pk)
+        course = get_object_or_404(Course, pk=pk)
         course_trainee_list = TraineeCourseSubject.objects.filter(course_subject__course=course)
         supervisor_list = Supervisor.objects.filter(course=course)
         subject_trainer_list = Subject.objects.filter(coursesubject__course=course)
@@ -67,9 +75,9 @@ class CourseMemberView(LoginRequiredMixin, View):
                     error = False
                     for item in course_subject_list:
                         try:
-                            trainee_course_subject = TraineeCourseSubject.objects.get(
-                                trainee=form.cleaned_data['trainee'],
-                                course_subject=item)
+                            trainee_course_subject = get_object_or_404(TraineeCourseSubject,
+                                                                       trainee=form.cleaned_data['trainee'],
+                                                                       course_subject=item)
                         except:
                             trainee_course_subject = None
                         if trainee_course_subject is None:
@@ -79,16 +87,16 @@ class CourseMemberView(LoginRequiredMixin, View):
                             trainee_course_subject.save()
                         else:
                             error = True
-                            messages.error(request, 'Sorry this trainee has already been in this course')
+                            messages.error(request, _('Sorry this trainee has already been in this course'))
                             break
                     if not error:
-                        messages.success(request, 'Yay this trainee has successfully added to this course')
+                        messages.success(request, _('Yay this trainee has successfully added to this course'))
             elif request.POST.get('trainer'):
                 form = SupervisorAddForm(request.POST)
                 if form.is_valid():
-                    course = Course.objects.get(pk=kwargs['pk'])
+                    course = get_object_or_404(Course, pk=kwargs['pk'])
                     try:
-                        supervisor = Supervisor.objects.get(course=course, trainer=form.cleaned_data['trainer'])
+                        supervisor = get_object_or_404(Supervisor, course=course, trainer=form.cleaned_data['trainer'])
                     except:
                         supervisor = None
                     if supervisor is None:
@@ -97,31 +105,32 @@ class CourseMemberView(LoginRequiredMixin, View):
                         supervisor.trainer = form.cleaned_data['trainer']
                         supervisor.save()
                         messages.info(request,
-                                      'Yay this trainer has successfully added to this course as supervisor')
+                                      _('Yay this trainer has successfully added to this course as supervisor'))
                     else:
-                        messages.warning(request, 'Sorry this trainer has already been in this course as supervisor')
+                        messages.warning(request, _('Sorry this trainer has already been in this course as supervisor'))
             elif request.POST.get('trainee_delete'):
                 form = CourseTraineeDeleteForm(request.POST)
                 if form.is_valid():
-                    trainee = User.objects.get(pk=form.cleaned_data['trainee_delete'])
-                    course = Course.objects.get(pk=kwargs['pk'])
+                    trainee = get_object_or_404(User, pk=form.cleaned_data['trainee_delete'])
+                    course = get_object_or_404(Course, pk=kwargs['pk'])
                     course_subject_list = CourseSubject.objects.filter(course=course)
                     for item in course_subject_list:
-                        trainee_course_subject = TraineeCourseSubject.objects.get(trainee=trainee, course_subject=item)
+                        trainee_course_subject = get_object_or_404(TraineeCourseSubject, trainee=trainee,
+                                                                   course_subject=item)
                         trainee_course_subject.delete()
-                    messages.success(request, 'Successfully deleted')
+                    messages.success(request, _('Successfully deleted'))
             elif request.POST.get('trainer_delete'):
                 form = SupervisorDeleteForm(request.POST)
                 if form.is_valid():
-                    trainer = User.objects.get(pk=form.cleaned_data['trainer_delete'])
-                    course = Course.objects.get(pk=kwargs['pk'])
-                    supervisor = Supervisor.objects.get(trainer=trainer, course=course)
+                    trainer = get_object_or_404(User, pk=form.cleaned_data['trainer_delete'])
+                    course = get_object_or_404(Course, pk=kwargs['pk'])
+                    supervisor = get_object_or_404(Supervisor, trainer=trainer, course=course)
                     supervisor.delete()
-                    messages.info(request, 'Successfully deleted')
+                    messages.info(request, _('Successfully deleted'))
         return redirect('course_member', pk=kwargs['pk'])
 
 
-class SubjectListView(generic.ListView):
+class SubjectListView(LoginRequiredMixin, generic.ListView):
     model = Subject
     context_object_name = 'subjects'
 
@@ -159,19 +168,31 @@ class SubjectCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Cre
             trainer = self.request.user
             subject = Subject(name=name, description=description, duration=duration, trainer=trainer)
             subject.save()
+
             return redirect('subject-list')
 
 
-class SubjectUpdateView(generic.UpdateView):
+class SubjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Subject
     form_class = SubjectUpdateForm
     template_name_suffix = '_update_form'
 
 
-class SubjectDetailView(generic.DetailView):
+class SubjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Subject
 
 
-class SubjectDeleteView(generic.DeleteView):
+class SubjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Subject
     success_url = reverse_lazy('subject-list')
+
+
+class CourseListView(LoginRequiredMixin, generic.ListView):
+    model = Course
+    context_object_name = 'courses'
+    template_name = 'course/course_list.html'
+
+
+class CourseDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Course
+    success_url = reverse_lazy('course_list')

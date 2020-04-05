@@ -1,7 +1,8 @@
 {% extends "user/base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>Create your task here</h1>
+<h1>{% trans 'Create your task here' %}</h1>
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
@@ -19,7 +20,7 @@
         {{ form.type|as_crispy_field }}
     </fieldset>
     <div class="form-group">
-        <button class="btn btn-outline-primary" type="submit">Add</button>
+        <button class="btn btn-outline-primary" type="submit">{% trans 'Add' %}</button>
     </div>
 </form>
 {% endblock %}

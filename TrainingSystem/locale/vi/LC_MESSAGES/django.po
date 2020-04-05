@@ -1,0 +1,401 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-03 14:41+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: course/templates/course/course_confirm_delete.html:8
+msgid "Deleting course"
+msgstr "Xóa khóa học"
+
+#: course/templates/course/course_confirm_delete.html:11
+msgid "Do you want to delete course"
+msgstr "Bạn có chắc chắn muốn xóa khóa học"
+
+#: course/templates/course/course_confirm_delete.html:12
+#: course/templates/course/course_list.html:30
+#: course/templates/course/course_member.html:90
+#: course/templates/course/course_member.html:150
+#: course/templates/course/subject_confirm_delete.html:12
+#: course/templates/course/subject_list.html:44
+#: task/templates/task/task_confirm_delete.html:12
+#: task/templates/task/task_list.html:37
+msgid "Delete"
+msgstr "Xóa"
+
+#: course/templates/course/course_detail.html:11
+#: course/templates/course/course_detail.html:65
+msgid "Course name"
+msgstr "Tên khóa học"
+
+#: course/templates/course/course_detail.html:17
+#: course/templates/course/course_detail.html:70
+#: course/templates/course/course_list.html:13
+#: course/templates/course/subject_detail.html:9
+#: course/templates/course/subject_list.html:23
+msgid "Description"
+msgstr "Mô tả"
+
+#: course/templates/course/course_detail.html:23
+#: task/templates/task/task_list.html:17
+msgid "Status"
+msgstr "Trạng thái"
+
+#: course/templates/course/course_detail.html:25
+msgid "Not yet"
+msgstr "Chưa học"
+
+#: course/templates/course/course_detail.html:26
+msgid "In progress"
+msgstr "Đang tiến hành"
+
+#: course/templates/course/course_detail.html:27
+msgid "Finished"
+msgstr "Kết thúc"
+
+#: course/templates/course/course_detail.html:32
+#: course/templates/course/course_detail.html:76
+#: task/templates/task/task_list.html:15
+msgid "Subject"
+msgstr "Môn học"
+
+#: course/templates/course/course_detail.html:37
+#: course/templates/course/course_detail.html:81
+msgid "days"
+msgstr "ngày"
+
+#: course/templates/course/course_detail.html:42
+#: course/templates/course/course_detail.html:86
+#: course/templates/course/course_list.html:14
+msgid "Supervisor"
+msgstr "Giám sát viên"
+
+#: course/templates/course/course_detail.html:52
+msgid "Save"
+msgstr "Lưu"
+
+#: course/templates/course/course_detail.html:54
+#: course/templates/course/course_detail.html:97
+msgid "View members"
+msgstr "Xem thành viên"
+
+#: course/templates/course/course_detail.html:57
+#: course/templates/course/course_detail.html:100
+msgid "View activities"
+msgstr "Xem hoạt động"
+
+#: course/templates/course/course_list.html:12
+#: course/templates/course/course_member.html:14
+#: course/templates/course/course_member.html:67
+#: course/templates/course/course_member.html:126
+#: course/templates/course/subject_list.html:22
+#: task/templates/task/task_list.html:11
+msgid "Name"
+msgstr "Tên"
+
+#: course/templates/course/course_member.html:8
+#: task/templates/task/task_list.html:16
+msgid "Course"
+msgstr "Khóa học"
+
+#: course/templates/course/course_member.html:15
+#: course/templates/course/course_member.html:68
+#: course/templates/course/course_member.html:127
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+#: course/templates/course/course_member.html:16
+#: course/templates/course/course_member.html:69
+#: course/templates/course/course_member.html:128
+msgid "Role"
+msgstr "Vai trò"
+
+#: course/templates/course/course_member.html:17
+#: course/templates/course/course_member.html:70
+#: course/templates/course/course_member.html:129
+msgid "DoB"
+msgstr "NS"
+
+#: course/templates/course/course_member.html:18
+#: course/templates/course/course_member.html:71
+#: course/templates/course/course_member.html:130
+msgid "Email"
+msgstr "Email"
+
+#: course/templates/course/course_member.html:19
+#: course/templates/course/course_member.html:72
+#: course/templates/course/course_member.html:131
+msgid "Phone"
+msgstr "Số điện thoại"
+
+#: course/templates/course/course_member.html:29
+#: course/templates/course/course_member.html:142
+#: course/templates/course/subject_detail.html:13
+#: course/templates/course/subject_list.html:25
+msgid "Trainer"
+msgstr "Giảng viên"
+
+#: course/templates/course/course_member.html:29
+#: course/templates/course/course_member.html:142
+msgid "Admin"
+msgstr "Quản trị viên"
+
+#: course/templates/course/course_member.html:38
+#: course/templates/course/course_member.html:82
+msgid "Trainee"
+msgstr "Sinh viên"
+
+#: course/templates/course/course_member.html:107
+#: course/templates/course/subject_form.html:12
+#: course/templates/course/subject_list.html:17
+#: task/templates/task/task_form.html:23
+#: task/templates/task/task_form_trainer.html:23
+#: task/templates/task/task_list.html:6
+msgid "Add"
+msgstr "Thêm"
+
+#: course/templates/course/subject_confirm_delete.html:8
+msgid "Deleting subject"
+msgstr "Xóa môn học"
+
+#: course/templates/course/subject_confirm_delete.html:11
+msgid "Do you want to delete subject"
+msgstr "Bạn có chắc chắn muốn xóa môn học"
+
+#: course/templates/course/subject_detail.html:11
+#: course/templates/course/subject_list.html:24
+msgid "Duration"
+msgstr "Thời lượng"
+
+#: course/templates/course/subject_list.html:16
+msgid "Subject List"
+msgstr "Danh sách môn học"
+
+#: course/templates/course/subject_list.html:26
+#: task/templates/task/task_list.html:18
+msgid "Action"
+msgstr "Hành động"
+
+#: course/templates/course/subject_update_form.html:8
+msgid "Subject Info"
+msgstr "Chi tiết môn học"
+
+#: course/templates/course/subject_update_form.html:12
+#: task/templates/task/task_update_form.html:23
+#: user/templates/user/profile.html:21
+#: user/templates/user/update_trainer.html:21
+msgid "Update"
+msgstr "Cập nhật"
+
+#: course/views.py:90
+msgid "Sorry this trainee has already been in this course"
+msgstr "Sinh viên đã tồn tại trọng khóa học"
+
+#: course/views.py:93
+msgid "Yay this trainee has successfully added to this course"
+msgstr "Đã thêm sinh viên vào khóa học thành công"
+
+#: course/views.py:108
+msgid "Yay this trainer has successfully added to this course as supervisor"
+msgstr "Đã thêm giám sát viên vào khóa học thành công"
+
+#: course/views.py:110
+msgid "Sorry this trainer has already been in this course as supervisor"
+msgstr "Giám sát viên đã tồn tại trong khóa học"
+
+#: course/views.py:121 course/views.py:129
+msgid "Successfully deleted"
+msgstr "Xóa thành công"
+
+#: task/templates/task/task_confirm_delete.html:8
+msgid "Deleting task"
+msgstr "Xóa nhiệm vụ"
+
+#: task/templates/task/task_confirm_delete.html:11
+msgid "Do you want to delete task"
+msgstr "Bạn có chắc chắn muốn xóa nhiệm vụ"
+
+#: task/templates/task/task_form.html:5
+#: task/templates/task/task_form_trainer.html:5
+msgid "Create your task here"
+msgstr "Tạo nhiệm vụ mới"
+
+#: task/templates/task/task_list.html:5
+msgid "Task List"
+msgstr "Danh sách nhiệm vụ"
+
+#: task/templates/task/task_list.html:12
+msgid "Type"
+msgstr "Loại"
+
+#: task/templates/task/task_list.html:13
+msgid "Start date"
+msgstr "Ngày bắt đầu"
+
+#: task/templates/task/task_list.html:14
+msgid "Due date"
+msgstr "Ngày kết thúc"
+
+#: task/templates/task/task_update_form.html:5
+msgid "Task Info"
+msgstr "Chi tiết nhiệm vụ"
+
+#: user/templates/user/acc_active_email.html:3
+msgid "Hi"
+msgstr "Xin chào"
+
+#: user/templates/user/acc_active_email.html:4
+msgid "Please click on the link to confirm your registration"
+msgstr "Vui lòng nhấp vào liên kết để xác nhận đăng ký của bạn"
+
+#: user/templates/user/base.html:63
+msgid "My account"
+msgstr "Hồ sơ"
+
+#: user/templates/user/base.html:65
+msgid "Sign out"
+msgstr "Đăng xuất"
+
+#: user/templates/user/base.html:74
+msgid "Logged in as"
+msgstr "Tài khoản"
+
+#: user/templates/user/base.html:77
+msgid "Home"
+msgstr "Trang chủ"
+
+#: user/templates/user/base.html:78
+msgid "My Tasks"
+msgstr "Nhiệm vụ"
+
+#: user/templates/user/base.html:79
+msgid "My Subjects"
+msgstr "Môn học"
+
+#: user/templates/user/base.html:113
+msgid "Training System"
+msgstr "Hệ thống đào tạo"
+
+#: user/templates/user/base.html:136
+msgid "Developed by"
+msgstr "Phát triển bởi"
+
+#: user/templates/user/base.html:136
+msgid "Traning System Team"
+msgstr "Nhóm Training System"
+
+#: user/templates/user/login.html:9
+msgid "Log In"
+msgstr "Đăng nhập"
+
+#: user/templates/user/login.html:13
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: user/templates/user/login.html:15
+msgid "Forgot Password?"
+msgstr "Quên mật khẩu"
+
+#: user/templates/user/login.html:21
+msgid "Need an account?"
+msgstr "Tạo tài khoản mới?"
+
+#: user/templates/user/login.html:21
+msgid "Sign Up Now"
+msgstr "Đăng ký ngay"
+
+#: user/templates/user/logout.html:5
+msgid "You have been log out"
+msgstr "Bạn đã đăng xuất thành công"
+
+#: user/templates/user/logout.html:8
+msgid "Log In Again"
+msgstr "Đăng nhập lại"
+
+#: user/templates/user/password_reset.html:9
+#: user/templates/user/password_reset_confirm.html:9
+msgid "Reset Password"
+msgstr "Thay đổi mật khẩu"
+
+#: user/templates/user/password_reset.html:13
+msgid "Request Password Reset"
+msgstr "Yêu cầu thay đổi mật khẩu"
+
+#: user/templates/user/password_reset_complete.html:5
+msgid "Your password has been set!"
+msgstr "Mật khảu đã thiết lập thành công"
+
+#: user/templates/user/password_reset_complete.html:7
+msgid "Sign In Now"
+msgstr "Đăng nhập ngay"
+
+#: user/templates/user/password_reset_confirm.html:13
+msgid "Password Reset"
+msgstr "Thay đổi mật khẩu"
+
+#: user/templates/user/password_reset_done.html:5
+msgid "An email has been sent with the instruction to reset your password!"
+msgstr "Một email đã được gửi với hướng dẫn để thiết lập lại mật khẩu của bạn!"
+
+#: user/templates/user/profile.html:17
+#: user/templates/user/update_trainer.html:17
+msgid "Profile Info"
+msgstr "Thông tin cá nhân"
+
+#: user/templates/user/register.html:6
+msgid "Welcome to Training System! Let's Sign Up"
+msgstr "Chào mừng đến với hế thống đào tạo! Hãy đăng ký"
+
+#: user/templates/user/register.html:10
+msgid "Be our members"
+msgstr "Trở thành thành viên"
+
+#: user/templates/user/register.html:14
+msgid "Sign Up"
+msgstr "Đăng ký"
+
+#: user/templates/user/register.html:19
+msgid "Already have an account?"
+msgstr "Đã có tài khoản?"
+
+#: user/templates/user/register.html:19
+msgid "Sign In"
+msgstr "Đăng nhập"
+
+#: user/views.py:39
+msgid "Activate your account."
+msgstr "Kích hoạt tài khoản"
+
+#: user/views.py:51
+msgid "Please confirm your email address to complete the registration"
+msgstr "Vui lòng xác nhận địa chỉ email của bạn để hoàn tất đăng ký"
+
+#: user/views.py:74
+msgid "Thank you for your email confirmation. Now you can login your account."
+msgstr "Cảm ơn bạn đã xác nhận email của bạn. Bây giờ bạn có thể đăng nhập tài khoản của bạn."
+
+#: user/views.py:76
+msgid "Activation link is invalid!"
+msgstr "Đường dẫn kích hoạt không hợp lệ"
+
+#: user/views.py:85 user/views.py:108
+msgid "Your profile has been updated!"
+msgstr "Hồ sơ của bạn đã được cập nhật"
+
+#: user/views.py:131
+msgid "Approved trainer success!"
+msgstr "Phê duyêt thành công!"

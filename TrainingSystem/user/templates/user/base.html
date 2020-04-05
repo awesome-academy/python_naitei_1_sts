@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!Doctype html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    {% block load_css %} {% endblock load_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'user/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'user/responsive.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">
@@ -14,16 +16,13 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'user/search.css' %}">
-
     <!-- Fengyuan Chen's Datepicker -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
+          integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
+            integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 
-    <!-- Fengyuan Chen's Datepicker -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
-
-    {% block load_css %} {% endblock load_css %}
     <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
@@ -39,20 +38,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
+
     <title> {% block title %} Tranning System {% endblock title %}</title>
 </head>
 <body class="theme-Circle controller-welcome action-index">
 <div id="wrapper">
     <div class="flyout-menu js-flyout-menu">
-{#        <div class="flyout-menu__search">#}
-        {#            <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
-        {#                {% csrf_token %}#}
-        {#                <input name="utf8" type="hidden" value="&#x2713;"/>#}
-        {#                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>#}
-        {#                <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input" placeholder="Search"#}
-        {#                       autocomplete="on"/>#}
-        {#            </form>#}
-        {#        </div>#}
         <div class="flyout-menu__avatar flyout-menu__avatar--no-avatar">
             <a class="user active" href="/profile">{{ user.username }}</a>
         </div>
@@ -62,58 +53,65 @@
         <h3>Profile</h3>
         <span class="js-profile-menu"></span>
     </div>
+
+
     <div id="wrapper2">
         <div id="wrapper3">
             <div id="top-menu">
                 <div id="account">
                     <ul>
-                        <li><a class="my-account" href="/profile">My account</a></li>
-                        <li><a class="logout" rel="nofollow" data-method="post" href="/logout">Sign out</a></li>
+                        <li><a class="my-account" href="/profile">{% trans 'My account' %}</a></li>
+                        <li><a class="logout" rel="nofollow" data-method="post"
+                               href="/logout">{% trans 'Sign out' %}</a></li>
                     </ul>
                 </div>
-                <div id="loggedas">Logged in as <a class="user active" href="/profile">{{ user.username }}</a></div>
+
+                {#                FORM CHOOSE LANGUAGE#}
+
+
+                <div id="loggedas">
+
+                    {% trans 'Logged in as' %} <a class="user active"
+                                                  href="/profile">{{ user.username }}</a></div>
                 <ul>
-                    <li><a class="home" href="/">Home</a></li>
-                    <li><a class="my-page" href="{% url 'task-list' %}">My Tasks</a></li>
-                    <li><a class="projects" href="{% url 'subject-list' %}">My Subjects</a></li>
+                    <li><a class="home" href="/">{% trans 'Home' %}</a></li>
+                    <li><a class="my-page" href="{% url 'task-list' %}">{% trans 'My Tasks' %}</a></li>
+                    <li><a class="projects" href="{% url 'subject-list' %}">{% trans 'My Subjects' %}</a></li>
+
                 </ul>
             </div>
             <div id="header">
-                <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
-                <div id="quick-search">
+                <div style="margin-top: 5px">
+                    <form id="language_form" style="float: right" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="text" value="{{ redirect_to }}">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <select class="form-control form-control-sm" name="language" id="language">
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                        selected {% endif %}>
+{#                                                                        {{ language.name_local }}#}
+                                    {{ language.code }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+                <div id="quick-search" style=" margin-top:5px; margin-right: 10px">
                     <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">
                         {% csrf_token %}
                         <input name="utf8" type="hidden" value="&#x2713;"/>
-                        <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>
+                        <img height="25px" src="{% static 'user/image/search.png' %}">
                         <input type="text" name="inputSearch" id="txtSearch" class="small js-search-input"
                                placeholder="Search"
                                autocomplete="on"/>
                     </form>
                 </div>
-                {#                    <form action="/search/" id="search-form" accept-charset="UTF-8" method="post">#}
-                {#                        <input name="utf8" type="hidden" value="&#x2713;"/>#}
-                {#                        <input type="hidden" name="scope"/>#}
-                {##}
-                {#                        <label for='q'>#}
-                {#                            <a accesskey="4" href="/search">Search</a>:#}
-                {#                        </label>#}
-                {#                        <input type="text" name="q" id="q" size="20" class="small" accesskey="f"/>#}
-                {#                    </form>#}
-                {#                    <div id="project-jump" class="drdn"><span class="drdn-trigger">Jump to a project...</span>#}
-                {#                        <div class="drdn-content">#}
-                {#                            <div class="quick-search">#}
-                {#                                <input type="text" name="q" id="projects-quick-search" value="" class="autocomplete"#}
-                {#                                       data-automcomplete-url="/projects/autocomplete.js?jump=welcome"#}
-                {#                                       autocomplete="off"/>#}
-                {#                            </div>#}
-                {#                            <div class="drdn-items projects selection"><a title="python_naitei_1_sts"#}
-                {#                                                                          href="/projects/python_naitei_1_sts?jump=welcome"><span#}
-                {#                                    style="padding-left:0px;">python_naitei_1_sts</span></a></div>#}
-                {#                            <div class="drdn-items all-projects selection"><a href="/projects?jump=welcome">All#}
-                {#                                Projects</a></div>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                <h1>Training System</h1>
+
+                <h1>{% trans 'Training System' %}</h1>
+
             </div>
             <div id="main" class="nosidebar">
                 <div id="sidebar">
@@ -135,7 +133,7 @@
         <div id="footer">
             <div class="bgl">
                 <div class="bgr">
-                    Developed by <a href="#">Traning System Team</a>
+                    {% trans 'Developed by' %} <a href="#"> {% trans 'Traning System Team' %}</a>
                 </div>
             </div>
         </div>
@@ -148,19 +146,7 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
 <script src="{% static 'user/search.js' %}"></script>
-
-<!-- Optionockal JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{#<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="#}
-{#        crossorigin="anonymous">#}
-{#</script>#}
-{#<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"#}
-{#        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>#}
-{##}
-{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"#}
-{#        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"#}
-{#        crossorigin="anonymous"></script>#}
-<!--<script src="{% static 'user/search.js' %}"></script>-->
+<script src="{% static 'user/language.js' %}"></script>
 {% block load_js %} {% endblock load_js %}
 </body>
 </html>

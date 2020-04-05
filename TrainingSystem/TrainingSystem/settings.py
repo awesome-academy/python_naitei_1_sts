@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -108,17 +109,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'vi'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
-
+LANGUAGES = [
+    ('en', 'English'),
+    ('vi', 'Vietnamese'),
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -127,6 +131,7 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 from django.conf.global_settings import DATETIME_INPUT_FORMATS, DATE_INPUT_FORMATS
+
 DATE_INPUT_FORMATS += ("%d-%m-%Y",)
 DATETIME_INPUT_FORMATS += ("%d-%m-%Y %H:%M:%S",)
 
@@ -140,3 +145,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )

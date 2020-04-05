@@ -1,5 +1,9 @@
 from django import forms
-from .models import Subject
+from .models import Subject, Course
+from django.db.models import Q
+
+from course.models import TraineeCourseSubject, Supervisor
+from user.models import User
 
 
 class SubjectCreateForm(forms.ModelForm):
@@ -14,10 +18,6 @@ class SubjectUpdateForm(forms.ModelForm):
         model = Subject
         fields = '__all__'
         exclude = ('trainer',)
-from django.db.models import Q
-
-from course.models import TraineeCourseSubject, Supervisor
-from user.models import User
 
 
 class CourseTraineeAddForm(forms.ModelForm):
@@ -42,3 +42,9 @@ class SupervisorDeleteForm(forms.Form):
 
 class CourseTraineeDeleteForm(forms.Form):
     trainee_delete = forms.IntegerField()
+
+
+class CourseUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'

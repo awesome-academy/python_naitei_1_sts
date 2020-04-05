@@ -1,65 +1,106 @@
 {% extends 'user/base.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="container">
-        <form>
-            <div class="row">
+        {% if user.role == 1 or user.role == 2 %}
+            <form method="post" class="row">
+                {% csrf_token %}
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="{{ form.name.id_for_label }}">Course name</label>
-                        <input type="text" class="form-control" id="{{ form.name.id_for_label }}"
-                               placeholder="Enter course name" value="{{ course.name }}" {% if user.role == 0 %}
-                               disabled
-                        {% endif %} >
+                        <label for="{{ course_update_form.name.id_for_label }}">{% trans 'Course name' %}</label>
+                        <input name="name" type="text" class="form-control"
+                               id="{{ course_update_form.name.id_for_label }}"
+                               placeholder="Enter course name" value="{{ course.name }}">
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.description.id_for_label }}">Description</label>
-                        <textarea class="form-control" id="{{ form.description.id_for_label }}"
-                                  placeholder="Enter course name" rows="10" {% if user.role == 0 %}
-                                  disabled
-                        {% endif %}>{{ course.description }}</textarea>
+                        <label for="{{ course_update_form.description.id_for_label }}">{% trans 'Description' %}</label>
+                        <textarea name="description" class="form-control"
+                                  id="{{ course_update_form.description.id_for_label }}"
+                                  placeholder="Enter course name" rows="10">{{ course.description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ course_update_form.status.id_for_label }}">{% trans 'Status' %}</label>
+                        <select name="status" class="form-control" id="course_update_form.status.id_for_label">
+                            <option value="n" {% if course.status == 'n' %} selected {% endif %}>{% trans 'Not yet' %}</option>
+                            <option value="i" {% if course.status == 'i' %} selected {% endif %}>{% trans 'In progress' %}</option>
+                            <option value="f" {% if course.status == 'f' %} selected {% endif %}>{% trans 'Finished' %}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <label for="list_subject">Subject</label>
                     <ul class="list-group" id="list_subject">
                         {% for coursesubject in course.coursesubject_set.all %}
-                            <li class="list-group-item"><a href="
-                                    {% if user.role == 1 %}
-                                        {% url 'subject-detail-trainee' coursesubject.subject.pk %}
-                                    {% elif user.role > 1 %}{% url 'subject-detail-trainer' coursesubject.subject.pk %}
-                                        {% endif %}">{{ coursesubject.subject.name }}
-                                - {{ coursesubject.subject.duration }} days</a> -
-                                <a href="#">
+                            <li class="list-group-item"><a
+                                    href="{% url 'subject-detail-trainer' coursesubject.subject.pk %}">{{ coursesubject.subject.name }}
+                                - {{ coursesubject.subject.duration }} {% trans 'days' %}</a> -
+                                <a href="{% url 'view-profile' coursesubject.subject.trainer.pk %}">
                                     {{ coursesubject.subject.trainer.username }}</a></li>
                         {% endfor %}
                     </ul>
                     <label for="list_supervisor">Supervisor</label>
                     <ul class="list-group" id="list_supervisor">
                         {% for supervisor in course.supervisor_set.all %}
-                            <li class="list-group-item"><a href="">{{ supervisor.trainer.username }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="{% url 'view-profile' supervisor.trainer.pk %}">{{ supervisor.trainer.username }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
-                {% if user.role == 1 or user.role == 2 %}
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="{% url 'course_member' course.pk %}">
-                            <button type="button" class="btn btn-primary">View members</button>
-                        </a>
-                        <button type="button" class="btn btn-danger">Finish</button>
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+                    <a href="{% url 'course_member' course.pk %}">
+                        <button type="button" class="btn btn-primary">{% trans 'View members' %}</button>
+                    </a>
+                    <a href="{% url 'task-list' %}">
+                        <button type="button" class="btn btn-primary">{% trans 'View activities' %}</button>
+                    </a>
+                </div>
+            </form>
+        {% elif user.role == 0 %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">{% trans 'Course name' %}</label>
+                        <input type="text" class="form-control" id="{{ form.name.id_for_label }}"
+                               placeholder="Enter course name" value="{{ course.name }}" disabled>
                     </div>
-                {% elif user.role == 0 %}
-                    <div class="col-sm-12 text-center">
-                        <a href="{% url 'course_member' course.pk %}">
-                            <button type="button" class="btn btn-primary">View members</button>
-                        </a>
-                        <a href="#">
-                            <button type="button" class="btn btn-primary">View activities</button>
-                        </a>
+                    <div class="form-group">
+                        <label for="{{ form.description.id_for_label }}">{% trans 'Description' %}</label>
+                        <textarea class="form-control" id="{{ form.description.id_for_label }}"
+                                  placeholder="Enter course name" rows="10" disabled>{{ course.description }}</textarea>
                     </div>
-                {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    <label for="list_subject">{% trans 'Subject' %}</label>
+                    <ul class="list-group" id="list_subject">
+                        {% for coursesubject in course.coursesubject_set.all %}
+                            <li class="list-group-item"><a
+                                    href="{% url 'subject-detail-trainee' coursesubject.subject.pk %}">{{ coursesubject.subject.name }}
+                                - {{ coursesubject.subject.duration }} {% trans 'days' %}</a> -
+                                <a href="{% url 'view-profile' coursesubject.subject.trainer.pk %}">
+                                    {{ coursesubject.subject.trainer.username }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <label for="list_supervisor">{% trans 'Supervisor' %}</label>
+                    <ul class="list-group" id="list_supervisor">
+                        {% for supervisor in course.supervisor_set.all %}
+                            <li class="list-group-item"><a
+                                    href="{% url 'view-profile' supervisor.trainer.pk %}">{{ supervisor.trainer.username }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <a href="{% url 'course_member' course.pk %}">
+                        <button type="button" class="btn btn-primary">{% trans 'View members' %}</button>
+                    </a>
+                    <a href="{% url 'task-list' %}">
+                        <button type="button" class="btn btn-primary">{% trans 'View activities' %}</button>
+                    </a>
+                </div>
             </div>
-        </form>
+        {% endif %}
     </div>
 {% endblock %}

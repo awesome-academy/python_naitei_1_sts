@@ -1,32 +1,40 @@
 {% extends "user/base.html" %}
-
+{% load i18n %}
 {% block content %}
 <div class="mt-4 mb-4">
-    <h1 class="mr-4" style="display: inline;">Task List</h1>
-    <a class="btn btn-outline-primary mb-3" href="{% url 'task-create' %}">Add</a>
+    <h1 class="mr-4" style="display: inline;">{% trans 'Task List' %}</h1>
+    <a class="btn btn-outline-primary mb-3" href="{% url 'task-create' %}">{% trans 'Add' %}</a>
 </div>
 <table class="table">
     <thead class="thead-light">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Start date</th>
-            <th scope="col">Due date</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Course</th>
-            <th scope="col">Option</th>
+            <th scope="col">{% trans 'Name' %}</th>
+            <th scope="col">{% trans 'Type' %}</th>
+            <th scope="col">{% trans 'Start date' %}</th>
+            <th scope="col">{% trans 'Due date' %}</th>
+            <th scope="col">{% trans 'Subject' %}</th>
+            <th scope="col">{% trans 'Course' %}</th>
+            <th scope="col">{% trans 'Status' %}</th>
+            <th scope="col">{% trans 'Action' %}</th>
         </tr>
     </thead>
     <tbody>
         {% for task in tasks %}
         <tr>
-            <td><a style="color: black; text-decoration: none;" href="{% url 'task-detail' task.pk %}">{{ task.name }}</a></td>
+            <td><a style="color: black;" href="{% url 'task-detail' task.pk %}">{{ task.name }}</a></td>
             <td>{% if task.type == 't' %}Task{% elif task.type == 'r' %}Report{% else %}Unknown{% endif %}</td>
             <td>{{ task.start_date }}</td>
             <td>{{ task.due_date }}</td>
             <td>{{ task.course_subject.subject.name }}</td>
             <td>{{ task.course_subject.course.name }}</td>
-            <td><a class="btn btn-danger" href="{% url 'task-delete' task.pk %}">Delete</a></td>
+            <td>
+                {% if task.status == 'n' %}New
+                {% elif task.status == 'i' %}In progress
+                {% elif task.status == 'd' %}Done
+                {% else %}Unknown
+                {% endif %}
+            </td>
+            <td><a class="btn btn-danger" href="{% url 'task-delete' task.pk %}">{% trans 'Delete' %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
