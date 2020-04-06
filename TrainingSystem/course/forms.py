@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subject, Course
+from .models import Subject, Course, CourseSubject
 from django.db.models import Q
 
 from course.models import TraineeCourseSubject, Supervisor
@@ -47,4 +47,22 @@ class CourseTraineeDeleteForm(forms.Form):
 class CourseUpdateForm(forms.ModelForm):
     class Meta:
         model = Course
+        fields = '__all__'
+
+
+class CourseCreateForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
+class CourseSubjectCreateForm(forms.ModelForm):
+    class Meta:
+        model = CourseSubject
+        fields = '__all__'
+
+
+class CourseSubjectUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CourseSubject
         fields = '__all__'

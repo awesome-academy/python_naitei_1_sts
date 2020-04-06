@@ -1,4 +1,5 @@
 {% extends "user/base.html" %}
+{% load i18n %}
 {% block load_css %}
     <style>
         a {
@@ -12,17 +13,18 @@
 {% endblock %}
 {% block content %}
     <div class="mt-4 mb-4">
-        <h1 class="mr-4" style="display: inline;">Subject List</h1>
-        <a class="btn btn-outline-primary mb-3" href="{% url 'subject-create' %}">Add</a>
+        <h1 class="mr-4" style="display: inline;">{% trans 'Subject List' %}</h1>
+        {% if user.role > 0 %}
+            <a class="btn btn-outline-primary mb-3" href="{% url 'subject-create' %}">{% trans 'Add' %}</a>{% endif %}
     </div>
     <table class="table">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Duration</th>
-            <th scope="col">Trainer</th>
-            <th scope="col">Action</th>
+            <th scope="col">{% trans 'Name' %}</th>
+            <th scope="col">{% trans 'Description' %}</th>
+            <th scope="col">{% trans 'Duration' %}</th>
+            <th scope="col">{% trans 'Trainer' %}</th>
+            <th scope="col">{% trans 'Action' %}</th>
         </tr>
         </thead>
         <tbody>
@@ -41,7 +43,7 @@
             <td>{{ subject.description }}</td>
             <td>{{ subject.duration }}</td>
             <td><a href="{% url 'view-profile' subject.trainer.pk %}">{{ subject.trainer.username }}</a></td>
-            <td><a class="btn btn-danger" href="{% url 'subject-delete' subject.pk %}">Delete</a></td>
+            <td><a class="btn btn-danger" href="{% url 'subject-delete' subject.pk %}">{% trans 'Delete' %}</a></td>
             </tr>
         {% endfor %}
         </tbody>

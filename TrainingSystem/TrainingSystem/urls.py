@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 import user.views as user_views
+import course.views as course_views
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('chat/', include('chat.urls')),
-    path('', user_views.home, name='home'),
+    path('', course_views.IndexView.as_view(), name='home'),
     path('user/', include('user.urls')),
     path('course/', include('course.urls')),
     path('task/', include('task.urls')),

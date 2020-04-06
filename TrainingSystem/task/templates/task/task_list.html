@@ -1,12 +1,12 @@
 {% extends "user/base.html" %}
 {% load i18n %}
 {% block content %}
-<div class="mt-4 mb-4">
-    <h1 class="mr-4" style="display: inline;">{% trans 'Task List' %}</h1>
-    <a class="btn btn-outline-primary mb-3" href="{% url 'task-create' %}">{% trans 'Add' %}</a>
-</div>
-<table class="table">
-    <thead class="thead-light">
+    <div class="mt-4 mb-4">
+        <h1 class="mr-4" style="display: inline;">{% trans 'Task List' %}</h1>
+        <a class="btn btn-outline-primary mb-3" href="{% url 'task-create' %}">{% trans 'Add' %}</a>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
         <tr>
             <th scope="col">{% trans 'Name' %}</th>
             <th scope="col">{% trans 'Type' %}</th>
@@ -17,26 +17,29 @@
             <th scope="col">{% trans 'Status' %}</th>
             <th scope="col">{% trans 'Action' %}</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         {% for task in tasks %}
-        <tr>
-            <td><a style="color: black;" href="{% url 'task-detail' task.pk %}">{{ task.name }}</a></td>
-            <td>{% if task.type == 't' %}Task{% elif task.type == 'r' %}Report{% else %}Unknown{% endif %}</td>
-            <td>{{ task.start_date }}</td>
-            <td>{{ task.due_date }}</td>
-            <td>{{ task.course_subject.subject.name }}</td>
-            <td>{{ task.course_subject.course.name }}</td>
-            <td>
-                {% if task.status == 'n' %}New
-                {% elif task.status == 'i' %}In progress
-                {% elif task.status == 'd' %}Done
-                {% else %}Unknown
-                {% endif %}
-            </td>
-            <td><a class="btn btn-danger" href="{% url 'task-delete' task.pk %}">{% trans 'Delete' %}</a></td>
-        </tr>
+            <tr>
+                <td><a style="color: black;" href="{% url 'task-detail' task.pk %}">{{ task.name }}</a></td>
+                <td>{% if task.type == 't' %}Task{% elif task.type == 'r' %}Report{% else %}Unknown{% endif %}</td>
+                <td>{{ task.start_date }}</td>
+                <td>{{ task.due_date }}</td>
+                <td>
+                    <a {% if user.role == 0 %}href="{% url 'subject-detail-trainee' task.course_subject.subject.pk %}" {% elif user.role > 0 %}
+                       href="{% url 'subject-detail-trainer' task.course_subject.subject.pk %}" {% endif %}>{{ task.course_subject.subject.name }}</a>
+                </td>
+                <td><a href="{% url 'course_detail' task.course_subject.course.pk %}">{{ task.course_subject.course.name }}</a></td>
+                <td>
+                    {% if task.status == 'n' %}New
+                    {% elif task.status == 'i' %}In progress
+                    {% elif task.status == 'd' %}Done
+                    {% else %}Unknown
+                    {% endif %}
+                </td>
+                <td><a class="btn btn-danger" href="{% url 'task-delete' task.pk %}">{% trans 'Delete' %}</a></td>
+            </tr>
         {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
 {% endblock %}

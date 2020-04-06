@@ -38,8 +38,8 @@ class TaskCreateFormForTrainer(TaskCreateForm):
     def __init__(self, *args, **kwargs):
         super(TaskCreateFormForTrainer, self).__init__(*args, **kwargs)
         raw_query = '''SELECT course_coursesubject.id FROM course_coursesubject 
-                        INNER JOIN course_supervisor cs ON cs.course_id = course_coursesubject.course_id
-                        INNER JOIN course_subject cs1 ON cs1.id = course_coursesubject.subject_id
+                        LEFT JOIN course_supervisor cs ON cs.course_id = course_coursesubject.course_id
+                        LEFT JOIN course_subject cs1 ON cs1.id = course_coursesubject.subject_id
                         WHERE cs1.trainer_id = %s
                         OR cs.trainer_id = %s'''
         self.fields['course_subject'].queryset = CourseSubject.objects.filter(id__in=RawSQL(raw_query, params=[self.user.id, self.user.id]))
@@ -57,14 +57,14 @@ class TaskUpdateForm(forms.ModelForm):
         ('d', 'done'),
     )
     status = forms.ChoiceField(choices=STATUS)
-    
+
     def __init__(self, pk, *args, **kwargs):
         self.pk = pk
         print(pk)
         super(TaskUpdateForm, self).__init__(*args, **kwargs)
         print(TraineeTask.objects.filter(task_id=pk).values_list('status', flat=True).first())
         self.fields['status'].initial = TraineeTask.objects.filter(task_id=pk).values_list('status', flat=True).first()
-    
+
     class Meta:
         model = Task
         fields = '__all__'

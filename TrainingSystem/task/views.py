@@ -11,12 +11,13 @@ from .models import Task, TraineeTask
 from .forms import TaskCreateForm, TaskUpdateForm, TaskCreateFormForTrainer
 import datetime
 
+
 # Create your views here.
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = 'tasks'
-    
+
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         raw_query = '''SELECT task_traineetask.status FROM task_traineetask
@@ -24,18 +25,20 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
                         '''
         context['status'] = TraineeTask.objects.raw(raw_query)
         return context
-    
+
     def get_queryset(self):
         user_id = self.request.user.id
-        queryset = Task.objects.raw('SELECT task_task.*, task_traineetask.* FROM task_task ' + 
-                                    'INNER JOIN task_traineetask ON task_task.id = task_traineetask.task_id ' +
-                                    'INNER JOIN course_coursesubject ON task_task.course_subject_id = course_coursesubject.id ' +
-                                    'INNER JOIN course_traineecoursesubject ON course_coursesubject.id = course_traineecoursesubject.course_subject_id ' +
-                                    'INNER JOIN user_user ON task_traineetask.trainee_id = user_user.id ' +
-                                    'WHERE course_traineecoursesubject.trainee_id = user_user.id ' +
-                                    'AND user_user.is_active = %s ' +
-                                    'AND course_traineecoursesubject.is_active = %s ' +
-                                    'AND user_user.id = %s', params=[True, True, user_id])
+        if self.request.user.role == 0:
+            queryset = Task.objects.raw('SELECT task_task.*, task_traineetask.* FROM task_task ' +
+                                        'INNER JOIN task_traineetask ON task_task.id = task_traineetask.task_id ' +
+                                        'INNER JOIN course_coursesubject ON task_task.course_subject_id = course_coursesubject.id ' +
+                                        'INNER JOIN course_traineecoursesubject ON course_coursesubject.id = course_traineecoursesubject.course_subject_id ' +
+                                        'INNER JOIN user_user ON task_traineetask.trainee_id = user_user.id ' +
+                                        'WHERE course_traineecoursesubject.trainee_id = user_user.id ' +
+                                        'AND user_user.is_active = %s ' +
+                                        'AND user_user.id = %s', params=[True, user_id])
+        else:
+            queryset = Task.objects.filter(creator=self.request.user)
         # for task in queryset:
         #     print(task.choice_set.all())
         return queryset
@@ -65,12 +68,14 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
                 creator = self.request.user
                 if form.cleaned_data['type'] == 'r':
                     date = datetime.datetime.today()
-                    task = Task(name=name, description=description, start_date=date, due_date=date, course_subject=course_subject, creator=creator, type='r')
+                    task = Task(name=name, description=description, start_date=date, due_date=date,
+                                course_subject=course_subject, creator=creator, type='r')
                     task.save()
                     trainee_task = TraineeTask(trainee=creator, task=task, status='d')
                     trainee_task.save()
                 else:
-                    task = Task(name=name, description=description, start_date=start_date, due_date=due_date, course_subject=course_subject, creator=creator, type='t')
+                    task = Task(name=name, description=description, start_date=start_date, due_date=due_date,
+                                course_subject=course_subject, creator=creator, type='t')
                     task.save()
                     trainee_task = TraineeTask(trainee=creator, task=task, status='n')
                     trainee_task.save()
@@ -88,7 +93,8 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
                 trainee = form.cleaned_data['assign']
                 creator = self.request.user
                 date = datetime.datetime.today()
-                task = Task(name=name, description=description, start_date=date, due_date=date, course_subject=course_subject, creator=creator, type='t')
+                task = Task(name=name, description=description, start_date=date, due_date=date,
+                            course_subject=course_subject, creator=creator, type='t')
                 task.save()
                 trainee_task = TraineeTask(trainee=trainee, task=task, status='n')
                 trainee_task.save()

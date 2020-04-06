@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 14:41+0700\n"
+"POT-Creation-Date: 2020-04-06 15:12+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,91 +24,134 @@ msgstr "Xóa khóa học"
 
 #: course/templates/course/course_confirm_delete.html:11
 msgid "Do you want to delete course"
-msgstr "Bạn có chắc chắn muốn xóa khóa học"
+msgstr "Bạn có muốn xóa khóa học"
 
 #: course/templates/course/course_confirm_delete.html:12
-#: course/templates/course/course_list.html:30
+#: course/templates/course/course_list.html:32
 #: course/templates/course/course_member.html:90
 #: course/templates/course/course_member.html:150
+#: course/templates/course/coursesubject_confirm_delete.html:12
+#: course/templates/course/coursesubject_list.html:37
 #: course/templates/course/subject_confirm_delete.html:12
-#: course/templates/course/subject_list.html:44
+#: course/templates/course/subject_list.html:46
 #: task/templates/task/task_confirm_delete.html:12
-#: task/templates/task/task_list.html:37
+#: task/templates/task/task_list.html:40
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:391
 msgid "Delete"
 msgstr "Xóa"
 
 #: course/templates/course/course_detail.html:11
-#: course/templates/course/course_detail.html:65
+#: course/templates/course/course_detail.html:69
 msgid "Course name"
 msgstr "Tên khóa học"
 
 #: course/templates/course/course_detail.html:17
-#: course/templates/course/course_detail.html:70
-#: course/templates/course/course_list.html:13
+#: course/templates/course/course_detail.html:74
+#: course/templates/course/course_form.html:16
+#: course/templates/course/course_list.html:14
 #: course/templates/course/subject_detail.html:9
-#: course/templates/course/subject_list.html:23
+#: course/templates/course/subject_list.html:24
 msgid "Description"
 msgstr "Mô tả"
 
 #: course/templates/course/course_detail.html:23
+#: course/templates/course/course_detail.html:79
+#: course/templates/course/course_form.html:22
 #: task/templates/task/task_list.html:17
 msgid "Status"
 msgstr "Trạng thái"
 
-#: course/templates/course/course_detail.html:25
+#: course/templates/course/course_detail.html:26
+#: course/templates/course/course_detail.html:82
+#: course/templates/course/course_form.html:24
 msgid "Not yet"
 msgstr "Chưa học"
 
-#: course/templates/course/course_detail.html:26
+#: course/templates/course/course_detail.html:28
+#: course/templates/course/course_detail.html:84
+#: course/templates/course/course_form.html:25
 msgid "In progress"
-msgstr "Đang tiến hành"
+msgstr "Đang học"
 
-#: course/templates/course/course_detail.html:27
+#: course/templates/course/course_detail.html:30
+#: course/templates/course/course_detail.html:86
+#: course/templates/course/course_form.html:26
 msgid "Finished"
-msgstr "Kết thúc"
+msgstr "Đã kết thúc"
 
-#: course/templates/course/course_detail.html:32
-#: course/templates/course/course_detail.html:76
+#: course/templates/course/course_detail.html:40
+#: course/templates/course/course_detail.html:96
+msgid "days"
+msgstr "ngày"
+
+#: course/templates/course/course_detail.html:56
+#: course/templates/course/coursesubject_update.html:25
+msgid "Save"
+msgstr "Lưu"
+
+#: course/templates/course/course_detail.html:58
+#: course/templates/course/course_detail.html:118
+msgid "View members"
+msgstr "Xem thành viên"
+
+#: course/templates/course/course_detail.html:61
+#: course/templates/course/course_detail.html:121
+msgid "View activities"
+msgstr "Xem hoạt động"
+
+#: course/templates/course/course_detail.html:91
+#: course/templates/course/coursesubject_form.html:19
+#: course/templates/course/coursesubject_list.html:15
+#: course/templates/course/coursesubject_update.html:18
 #: task/templates/task/task_list.html:15
 msgid "Subject"
 msgstr "Môn học"
 
-#: course/templates/course/course_detail.html:37
-#: course/templates/course/course_detail.html:81
-msgid "days"
-msgstr "ngày"
-
-#: course/templates/course/course_detail.html:42
-#: course/templates/course/course_detail.html:86
-#: course/templates/course/course_list.html:14
+#: course/templates/course/course_detail.html:107
+#: course/templates/course/course_list.html:15
 msgid "Supervisor"
 msgstr "Giám sát viên"
 
-#: course/templates/course/course_detail.html:52
-msgid "Save"
-msgstr "Lưu"
+#: course/templates/course/course_form.html:7
+msgid "Add new course"
+msgstr "Thêm khóa học mới"
 
-#: course/templates/course/course_detail.html:54
-#: course/templates/course/course_detail.html:97
-msgid "View members"
-msgstr "Xem thành viên"
-
-#: course/templates/course/course_detail.html:57
-#: course/templates/course/course_detail.html:100
-msgid "View activities"
-msgstr "Xem hoạt động"
-
-#: course/templates/course/course_list.html:12
+#: course/templates/course/course_form.html:11
+#: course/templates/course/course_list.html:13
 #: course/templates/course/course_member.html:14
 #: course/templates/course/course_member.html:67
 #: course/templates/course/course_member.html:126
-#: course/templates/course/subject_list.html:22
+#: course/templates/course/subject_list.html:23
 #: task/templates/task/task_list.html:11
 msgid "Name"
 msgstr "Tên"
 
+#: course/templates/course/course_form.html:13
+msgid "Enter name"
+msgstr "Nhập tên"
+
+#: course/templates/course/course_form.html:19
+msgid "Enter description"
+msgstr "Nhập mô tả"
+
+#: course/templates/course/course_form.html:29
+#: course/templates/course/course_list.html:8
+#: course/templates/course/course_member.html:107
+#: course/templates/course/coursesubject_form.html:26
+#: course/templates/course/coursesubject_list.html:9
+#: course/templates/course/subject_form.html:12
+#: course/templates/course/subject_list.html:18
+#: task/templates/task/task_form.html:23
+#: task/templates/task/task_form_trainer.html:23
+#: task/templates/task/task_list.html:6
+msgid "Add"
+msgstr "Thêm mới"
+
 #: course/templates/course/course_member.html:8
-#: task/templates/task/task_list.html:16
+#: course/templates/course/coursesubject_form.html:11
+#: course/templates/course/coursesubject_list.html:14
+#: course/templates/course/coursesubject_update.html:10
+#: course/templates/course/index.html:10 task/templates/task/task_list.html:16
 msgid "Course"
 msgstr "Khóa học"
 
@@ -122,13 +165,13 @@ msgstr "Tên đăng nhập"
 #: course/templates/course/course_member.html:69
 #: course/templates/course/course_member.html:128
 msgid "Role"
-msgstr "Vai trò"
+msgstr "Chức vụ"
 
 #: course/templates/course/course_member.html:17
 #: course/templates/course/course_member.html:70
 #: course/templates/course/course_member.html:129
 msgid "DoB"
-msgstr "NS"
+msgstr "Ngày sinh"
 
 #: course/templates/course/course_member.html:18
 #: course/templates/course/course_member.html:71
@@ -140,12 +183,12 @@ msgstr "Email"
 #: course/templates/course/course_member.html:72
 #: course/templates/course/course_member.html:131
 msgid "Phone"
-msgstr "Số điện thoại"
+msgstr "Số ĐT"
 
 #: course/templates/course/course_member.html:29
 #: course/templates/course/course_member.html:142
 #: course/templates/course/subject_detail.html:13
-#: course/templates/course/subject_list.html:25
+#: course/templates/course/subject_list.html:26
 msgid "Trainer"
 msgstr "Giảng viên"
 
@@ -159,41 +202,19 @@ msgstr "Quản trị viên"
 msgid "Trainee"
 msgstr "Sinh viên"
 
-#: course/templates/course/course_member.html:107
-#: course/templates/course/subject_form.html:12
-#: course/templates/course/subject_list.html:17
-#: task/templates/task/task_form.html:23
-#: task/templates/task/task_form_trainer.html:23
-#: task/templates/task/task_list.html:6
-msgid "Add"
-msgstr "Thêm"
+#: course/templates/course/coursesubject_confirm_delete.html:8
+msgid "Deleting course subject"
+msgstr "Xóa môn học khỏi khóa học"
 
-#: course/templates/course/subject_confirm_delete.html:8
-msgid "Deleting subject"
-msgstr "Xóa môn học"
+#: course/templates/course/coursesubject_confirm_delete.html:11
+msgid "Do you truly want to delete this course subject"
+msgstr "Bạn có chắc chắn muốn xóa môn học này khỏi khóa học"
 
-#: course/templates/course/subject_confirm_delete.html:11
-msgid "Do you want to delete subject"
-msgstr "Bạn có chắc chắn muốn xóa môn học"
+#: course/templates/course/coursesubject_list.html:8
+msgid "CourseSubject List"
+msgstr "Danh sách các môn học trong từng khóa học"
 
-#: course/templates/course/subject_detail.html:11
-#: course/templates/course/subject_list.html:24
-msgid "Duration"
-msgstr "Thời lượng"
-
-#: course/templates/course/subject_list.html:16
-msgid "Subject List"
-msgstr "Danh sách môn học"
-
-#: course/templates/course/subject_list.html:26
-#: task/templates/task/task_list.html:18
-msgid "Action"
-msgstr "Hành động"
-
-#: course/templates/course/subject_update_form.html:8
-msgid "Subject Info"
-msgstr "Chi tiết môn học"
-
+#: course/templates/course/coursesubject_list.html:35
 #: course/templates/course/subject_update_form.html:12
 #: task/templates/task/task_update_form.html:23
 #: user/templates/user/profile.html:21
@@ -201,23 +222,94 @@ msgstr "Chi tiết môn học"
 msgid "Update"
 msgstr "Cập nhật"
 
-#: course/views.py:90
+#: course/templates/course/index.html:11
+msgid "Course list"
+msgstr "Danh sách khóa học"
+
+#: course/templates/course/index.html:12
+msgid "Create new course"
+msgstr "Tạo khóa học mới"
+
+#: course/templates/course/index.html:15
+msgid "Task"
+msgstr "Nhiệm vụ"
+
+#: course/templates/course/index.html:16
+msgid "Task list"
+msgstr "Danh sách nhiệm vụ"
+
+#: course/templates/course/index.html:17
+msgid "Create task"
+msgstr "Tạo nhiệm vụ mới"
+
+#: course/templates/course/index.html:23
+msgid "User"
+msgstr "Người dùng"
+
+#: course/templates/course/index.html:24
+msgid "Create new user"
+msgstr "Tạo người dùng mới"
+
+#: course/templates/course/index.html:27
+msgid "Course subject"
+msgstr "Khóa học - Môn học"
+
+#: course/templates/course/index.html:28
+msgid "Course subject list"
+msgstr "Danh sách các môn học trong từng khóa học"
+
+#: course/templates/course/index.html:29
+msgid "Create new course subject"
+msgstr "Thêm môn học mới vào khóa học"
+
+#: course/templates/course/subject_confirm_delete.html:8
+msgid "Deleting subject"
+msgstr "Xóa môn học"
+
+#: course/templates/course/subject_confirm_delete.html:11
+msgid "Do you want to delete subject"
+msgstr "Bạn có muốn xóa môn học"
+
+#: course/templates/course/subject_detail.html:11
+#: course/templates/course/subject_list.html:25
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1537
+msgid "Duration"
+msgstr "Thời lượng"
+
+#: course/templates/course/subject_form.html:5
+msgid "Create your subject here"
+msgstr "Tạo môn học mới"
+
+#: course/templates/course/subject_list.html:16
+msgid "Subject List"
+msgstr "Danh sách các môn học"
+
+#: course/templates/course/subject_list.html:27
+#: task/templates/task/task_list.html:18
+msgid "Action"
+msgstr "Hành động"
+
+#: course/templates/course/subject_update_form.html:8
+msgid "Subject Info"
+msgstr "Thông tin môn học"
+
+#: course/views.py:102
 msgid "Sorry this trainee has already been in this course"
-msgstr "Sinh viên đã tồn tại trọng khóa học"
+msgstr "Xin lỗi, sinh viên này đã có trong khóa học"
 
-#: course/views.py:93
+#: course/views.py:105
 msgid "Yay this trainee has successfully added to this course"
-msgstr "Đã thêm sinh viên vào khóa học thành công"
+msgstr "Sinh viên này đã được thêm thành công"
 
-#: course/views.py:108
+#: course/views.py:120
 msgid "Yay this trainer has successfully added to this course as supervisor"
-msgstr "Đã thêm giám sát viên vào khóa học thành công"
+msgstr "Giám sát viên này đã được thêm vào khóa học thành công"
 
-#: course/views.py:110
+#: course/views.py:122
 msgid "Sorry this trainer has already been in this course as supervisor"
-msgstr "Giám sát viên đã tồn tại trong khóa học"
+msgstr "Xin lỗi, giám sát viên này đã tồn tại"
 
-#: course/views.py:121 course/views.py:129
+#: course/views.py:133 course/views.py:141
 msgid "Successfully deleted"
 msgstr "Xóa thành công"
 
@@ -227,12 +319,12 @@ msgstr "Xóa nhiệm vụ"
 
 #: task/templates/task/task_confirm_delete.html:11
 msgid "Do you want to delete task"
-msgstr "Bạn có chắc chắn muốn xóa nhiệm vụ"
+msgstr "Bạn có muốn xóa nhiệm vụ"
 
 #: task/templates/task/task_form.html:5
 #: task/templates/task/task_form_trainer.html:5
 msgid "Create your task here"
-msgstr "Tạo nhiệm vụ mới"
+msgstr "Thêm nhiệm vụ mới"
 
 #: task/templates/task/task_list.html:5
 msgid "Task List"
@@ -252,7 +344,7 @@ msgstr "Ngày kết thúc"
 
 #: task/templates/task/task_update_form.html:5
 msgid "Task Info"
-msgstr "Chi tiết nhiệm vụ"
+msgstr "Thông tin nhiệm vụ"
 
 #: user/templates/user/acc_active_email.html:3
 msgid "Hi"
@@ -260,11 +352,11 @@ msgstr "Xin chào"
 
 #: user/templates/user/acc_active_email.html:4
 msgid "Please click on the link to confirm your registration"
-msgstr "Vui lòng nhấp vào liên kết để xác nhận đăng ký của bạn"
+msgstr "Vui lòng bấm vào đường dẫn để xác nhận đăng ký"
 
 #: user/templates/user/base.html:63
 msgid "My account"
-msgstr "Hồ sơ"
+msgstr "Tài khoản"
 
 #: user/templates/user/base.html:65
 msgid "Sign out"
@@ -272,7 +364,7 @@ msgstr "Đăng xuất"
 
 #: user/templates/user/base.html:74
 msgid "Logged in as"
-msgstr "Tài khoản"
+msgstr "Xin chào, "
 
 #: user/templates/user/base.html:77
 msgid "Home"
@@ -280,11 +372,11 @@ msgstr "Trang chủ"
 
 #: user/templates/user/base.html:78
 msgid "My Tasks"
-msgstr "Nhiệm vụ"
+msgstr "Nhiệm vụ của tôi"
 
 #: user/templates/user/base.html:79
 msgid "My Subjects"
-msgstr "Môn học"
+msgstr "Môn học của tôi"
 
 #: user/templates/user/base.html:113
 msgid "Training System"
@@ -296,7 +388,7 @@ msgstr "Phát triển bởi"
 
 #: user/templates/user/base.html:136
 msgid "Traning System Team"
-msgstr "Nhóm Training System"
+msgstr "nhóm Traning System"
 
 #: user/templates/user/login.html:9
 msgid "Log In"
@@ -308,7 +400,7 @@ msgstr "Đăng nhập"
 
 #: user/templates/user/login.html:15
 msgid "Forgot Password?"
-msgstr "Quên mật khẩu"
+msgstr "Quên mật khẩu?"
 
 #: user/templates/user/login.html:21
 msgid "Need an account?"
@@ -337,7 +429,7 @@ msgstr "Yêu cầu thay đổi mật khẩu"
 
 #: user/templates/user/password_reset_complete.html:5
 msgid "Your password has been set!"
-msgstr "Mật khảu đã thiết lập thành công"
+msgstr "Đổi mật khẩu thành công"
 
 #: user/templates/user/password_reset_complete.html:7
 msgid "Sign In Now"
@@ -345,11 +437,11 @@ msgstr "Đăng nhập ngay"
 
 #: user/templates/user/password_reset_confirm.html:13
 msgid "Password Reset"
-msgstr "Thay đổi mật khẩu"
+msgstr "Đổi mật khẩu"
 
 #: user/templates/user/password_reset_done.html:5
 msgid "An email has been sent with the instruction to reset your password!"
-msgstr "Một email đã được gửi với hướng dẫn để thiết lập lại mật khẩu của bạn!"
+msgstr "Hướng dẫn thay đổi mật khẩu đã được gửi đến email của bạn"
 
 #: user/templates/user/profile.html:17
 #: user/templates/user/update_trainer.html:17
@@ -358,11 +450,11 @@ msgstr "Thông tin cá nhân"
 
 #: user/templates/user/register.html:6
 msgid "Welcome to Training System! Let's Sign Up"
-msgstr "Chào mừng đến với hế thống đào tạo! Hãy đăng ký"
+msgstr "Chào mừng đến với Hệ thống Đào tạo. Nhanh tay đăng ký nào!"
 
 #: user/templates/user/register.html:10
 msgid "Be our members"
-msgstr "Trở thành thành viên"
+msgstr "Hãy trở thành thành viên mới"
 
 #: user/templates/user/register.html:14
 msgid "Sign Up"
@@ -382,11 +474,11 @@ msgstr "Kích hoạt tài khoản"
 
 #: user/views.py:51
 msgid "Please confirm your email address to complete the registration"
-msgstr "Vui lòng xác nhận địa chỉ email của bạn để hoàn tất đăng ký"
+msgstr "Hãy xác nhận địa chỉ email của bạn để hoàn thành đăng ký"
 
 #: user/views.py:74
 msgid "Thank you for your email confirmation. Now you can login your account."
-msgstr "Cảm ơn bạn đã xác nhận email của bạn. Bây giờ bạn có thể đăng nhập tài khoản của bạn."
+msgstr "Xác nhận email thành công. Bây giờ bạn có thể đăng nhập"
 
 #: user/views.py:76
 msgid "Activation link is invalid!"
@@ -394,8 +486,1183 @@ msgstr "Đường dẫn kích hoạt không hợp lệ"
 
 #: user/views.py:85 user/views.py:108
 msgid "Your profile has been updated!"
-msgstr "Hồ sơ của bạn đã được cập nhật"
+msgstr "Thông tin cá nhân của bạn đã được cập nhật"
 
 #: user/views.py:131
 msgid "Approved trainer success!"
-msgstr "Phê duyêt thành công!"
+msgstr "Phê duyêt giảng viên thành công"
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:129
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_form_helper.py:139
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:53
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout.py:360
+msgid "i18n text"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout.py:360
+msgid "i18n legend"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/crispy_forms/tests/test_layout_objects.py:129
+#: venv/lib/python3.6/site-packages/django/core/validators.py:32
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/contrib/sitemaps/apps.py:7
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/contrib/staticfiles/apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/paginator.py:45
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/paginator.py:47
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/paginator.py:52
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:103
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:659
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:155
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:166
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.6/site-packages/django/core/validators.py:240
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:247
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:256
+#: venv/lib/python3.6/site-packages/django/core/validators.py:276
+msgid "Enter a valid IPv4 address."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:261
+#: venv/lib/python3.6/site-packages/django/core/validators.py:277
+msgid "Enter a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:271
+#: venv/lib/python3.6/site-packages/django/core/validators.py:275
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:305
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:311
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:343
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:352
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:362
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:377
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:396
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:291
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:326
+msgid "Enter a number."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:398
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:403
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:408
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:470
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/core/validators.py:522
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/base.py:1181
+#: venv/lib/python3.6/site-packages/django/forms/models.py:759
+msgid "and"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/base.py:1183
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:104
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:105
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:106
+msgid "This field cannot be blank."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:107
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:111
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:130
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:937
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:938
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:940
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:981
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1045
+msgid "Comma-separated integers"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1094
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1096
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1239
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1099
+msgid "Date (without time)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1237
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1241
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1245
+msgid "Date (with time)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1393
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1395
+msgid "Decimal number"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1534
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1587
+msgid "Email address"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1610
+msgid "File path"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1676
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1678
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1716
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1718
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1801
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1817
+msgid "IPv4 address"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1848
+msgid "IP address"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1928
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1929
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1931
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1966
+msgid "Positive integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1979
+msgid "Positive small integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1993
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2025
+msgid "Small integer"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2032
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2060
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2062
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2065
+msgid "Time"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2191
+msgid "URL"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2213
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2278
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2280
+msgid "Universally unique identifier"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/files.py:221
+msgid "File"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/files.py:360
+msgid "Image"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:778
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:780
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:1012
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:1066
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:1067
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/db/models/fields/related.py:1109
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python3.6/site-packages/django/forms/boundfield.py:149
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:246
+msgid "Enter a whole number."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:397
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:1127
+msgid "Enter a valid date."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:421
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:1128
+msgid "Enter a valid time."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:443
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:472
+msgid "Enter a valid duration."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:473
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:533
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:534
+msgid "No file was submitted."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:535
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:537
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:540
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:601
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:763
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:853
+#: venv/lib/python3.6/site-packages/django/forms/models.py:1275
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:854
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:969
+#: venv/lib/python3.6/site-packages/django/forms/models.py:1274
+msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:970
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/fields.py:1186
+msgid "Enter a valid UUID."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python3.6/site-packages/django/forms/forms.py:81
+msgid ":"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/forms.py:207
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:93
+msgid "ManagementForm data is missing or has been tampered with"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:345
+#, python-format
+msgid "Please submit %d or fewer forms."
+msgid_plural "Please submit %d or fewer forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:352
+#, python-format
+msgid "Please submit %d or more forms."
+msgid_plural "Please submit %d or more forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:379
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:386
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:754
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:758
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:764
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:773
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:1094
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:1161
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/models.py:1277
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/utils.py:162
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:395
+msgid "Clear"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:396
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:397
+msgid "Change"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:709
+msgid "Unknown"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:710
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/forms/widgets.py:711
+msgid "No"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:788
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:817
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:834
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:836
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:838
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:840
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:842
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/template/defaultfilters.py:844
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:62
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:63
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:68
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:69
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:150
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dateformat.py:152
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:11
+msgid "Sat"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:14
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:15
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:15
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:15
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:15
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:15
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:16
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "mar"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "may"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:23
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:24
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:25
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:26
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:27
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:28
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:29
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:30
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:37
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:38
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:39
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:40
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:41
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:42
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:43
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:44
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/ipv6.py:8
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/text.py:69
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/text.py:235
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python3.6/site-packages/django/utils/text.py:254
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:83
+msgid ", "
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:9
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.6/site-packages/django/utils/timesince.py:72
+msgid "0 minutes"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:110
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:111
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:115
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:120
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:124
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:132
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:137
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/csrf.py:142
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:41
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:61
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:111
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:208
+msgid "Date out of range"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:90
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:142
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:188
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:338
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:367
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:589
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/dates.py:623
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/detail.py:54
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/list.py:67
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/list.py:72
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/generic/list.py:154
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/static.py:40
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/static.py:42
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/static.py:80
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:7
+msgid "Django: the Web framework for perfectionists with deadlines."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:346
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:368
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:369
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:384
+msgid "Django Documentation"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:385
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:396
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:397
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:408
+msgid "Django Community"
+msgstr ""
+
+#: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:409
+msgid "Connect, get help, or contribute"
+msgstr ""

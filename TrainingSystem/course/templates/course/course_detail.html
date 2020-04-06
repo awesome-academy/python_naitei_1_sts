@@ -20,11 +20,20 @@
                                   placeholder="Enter course name" rows="10">{{ course.description }}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="{{ course_update_form.room_name.id_for_label }}">{% trans 'Room name' %}</label>
+                        <input name="name" type="text" class="form-control"
+                               id="{{ course_update_form.room_name.id_for_label }}"
+                               placeholder="Enter room name" value="{{ course.room_name }}">
+                    </div>
+                    <div class="form-group">
                         <label for="{{ course_update_form.status.id_for_label }}">{% trans 'Status' %}</label>
                         <select name="status" class="form-control" id="course_update_form.status.id_for_label">
-                            <option value="n" {% if course.status == 'n' %} selected {% endif %}>{% trans 'Not yet' %}</option>
-                            <option value="i" {% if course.status == 'i' %} selected {% endif %}>{% trans 'In progress' %}</option>
-                            <option value="f" {% if course.status == 'f' %} selected {% endif %}>{% trans 'Finished' %}</option>
+                            <option value="n" {% if course.status == 'n' %}
+                                    selected {% endif %}>{% trans 'Not yet' %}</option>
+                            <option value="i" {% if course.status == 'i' %}
+                                    selected {% endif %}>{% trans 'In progress' %}</option>
+                            <option value="f" {% if course.status == 'f' %}
+                                    selected {% endif %}>{% trans 'Finished' %}</option>
                         </select>
                     </div>
                 </div>
@@ -36,7 +45,8 @@
                                     href="{% url 'subject-detail-trainer' coursesubject.subject.pk %}">{{ coursesubject.subject.name }}
                                 - {{ coursesubject.subject.duration }} {% trans 'days' %}</a> -
                                 <a href="{% url 'view-profile' coursesubject.subject.trainer.pk %}">
-                                    {{ coursesubject.subject.trainer.username }}</a></li>
+                                    {{ coursesubject.subject.trainer.username }}</a>
+                                <a class="btn-sm btn-success float-right" href="{% url 'course-subject-active' coursesubject.pk %}">Start</a></li>
                         {% endfor %}
                     </ul>
                     <label for="list_supervisor">Supervisor</label>
@@ -74,6 +84,23 @@
                         <textarea class="form-control" id="{{ form.description.id_for_label }}"
                                   placeholder="Enter course name" rows="10" disabled>{{ course.description }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="{{ course_update_form.room_name.id_for_label }}">{% trans 'Room name' %}</label>
+                        <input disabled name="name" type="text" class="form-control"
+                               id="{{ course_update_form.room_name.id_for_label }}"
+                               placeholder="Enter room name" value="{{ course.room_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ course_update_form.status.id_for_label }}">{% trans 'Status' %}</label>
+                        <select disabled name="status" class="form-control" id="course_update_form.status.id_for_label">
+                            <option value="n" {% if course.status == 'n' %}
+                                    selected {% endif %}>{% trans 'Not yet' %}</option>
+                            <option value="i" {% if course.status == 'i' %}
+                                    selected {% endif %}>{% trans 'In progress' %}</option>
+                            <option value="f" {% if course.status == 'f' %}
+                                    selected {% endif %}>{% trans 'Finished' %}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <label for="list_subject">{% trans 'Subject' %}</label>
@@ -83,7 +110,13 @@
                                     href="{% url 'subject-detail-trainee' coursesubject.subject.pk %}">{{ coursesubject.subject.name }}
                                 - {{ coursesubject.subject.duration }} {% trans 'days' %}</a> -
                                 <a href="{% url 'view-profile' coursesubject.subject.trainer.pk %}">
-                                    {{ coursesubject.subject.trainer.username }}</a></li>
+                                    {{ coursesubject.subject.trainer.username }}</a> -
+                                {% if status.course_subject.id == coursesubject.id %}
+                                    <span class="badge badge-success">Active</span>
+                                    <a class="btn-sm btn-danger float-right" href="{% url 'course-subject-deactive' coursesubject.pk %}">Finish</a>
+                                {% else %}
+                                    <span class="badge badge-secondary">Deactive</span>
+                                {% endif %}</li>
                         {% endfor %}
                     </ul>
                     <label for="list_supervisor">{% trans 'Supervisor' %}</label>

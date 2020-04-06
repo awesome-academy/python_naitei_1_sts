@@ -5,10 +5,10 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">{% trans "Deleting subject" %}</legend>
+            <legend class="border-bottom mb-4">{% trans 'Deleting course subject' %}</legend>
         </fieldset>
         <div class="form-group">
-            <p>{% trans 'Do you want to delete subject' %} "{{ object }}"?</p>
+            <p>{% trans 'Do you truly want to delete this course subject' %} "{{ object }}"?</p>
             <button class="btn btn-outline-danger" type="submit">{% trans 'Delete' %}</button>
         </div>
     </form>
