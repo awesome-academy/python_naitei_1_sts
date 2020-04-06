@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,3 +149,13 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )
+
+ASGI_APPLICATION = 'TrainingSystem.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
