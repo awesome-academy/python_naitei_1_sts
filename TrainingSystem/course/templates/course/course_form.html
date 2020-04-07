@@ -19,6 +19,11 @@
                                   placeholder="{% trans 'Enter description' %}" rows="8"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="{{ form.room_name.id_for_label }}">{% trans 'Room name' %}</label>
+                        <input name="room_name" type="text" class="form-control" id="{{ form.room_name.id_for_label }}"
+                               placeholder="{% trans 'Enter room chat name' %}">
+                    </div>
+                    <div class="form-group">
                         <label for="{{ form.status.id_for_label }}">{% trans 'Status' %}</label>
                         <select name="status" class="form-control" id="{{ form.status.id_for_label }}">
                             <option value="n" selected>{% trans 'Not yet' %}</option>

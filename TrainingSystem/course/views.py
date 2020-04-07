@@ -38,13 +38,14 @@ class CourseDetailView(LoginRequiredMixin, generic.DetailView):
 
     def post(self, request, *args, **kwargs):
         course = get_object_or_404(Course, pk=kwargs['pk'])
-        form = CourseUpdateForm(request.POST)
+        form = CourseUpdateForm(request.POST, instance=course)
         if form.is_valid():
             course.name = form.cleaned_data['name']
             course.description = form.cleaned_data['description']
             course.status = form.cleaned_data['status']
+            course.room_name = form.cleaned_data['room_name']
             course.save()
-        return redirect("course_detail", pk=kwargs['pk'])
+            return redirect("course_detail", pk=kwargs['pk'])
 
 
 class CourseMemberView(LoginRequiredMixin, View):
