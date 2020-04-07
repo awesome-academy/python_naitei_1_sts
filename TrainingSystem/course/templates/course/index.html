@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-col-center">
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>{% trans 'Course' %}</h1>
+                        <a href="{% url 'course_list' %}">{% trans 'Course list' %}</a><br>
+                        {% if user.role > 0 %}<a href="{% url 'course_create' %}">{% trans 'Create new course' %}</a>{% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>{% trans 'Task' %}</h1>
+                        <a href="{% url 'task-list' %}">{% trans 'Task list' %}</a><br>
+                        <a href="{% url 'task-create' %}">{% trans 'Create task' %}</a>
+                    </div>
+                </div>
+                {% if user.role > 0 %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1>{% trans 'User' %}</h1>
+                            <a href="{% url 'register' %}">{% trans 'Create new user' %}</a><br>
+                        </div>
+                        <div class="col-sm-6">
+                            <h1>{% trans 'Course subject' %}</h1>
+                            <a href="{% url 'course_subject_list' %}">{% trans 'Course subject list' %}</a><br>
+                            <a href="{% url 'course_subject_create' %}">{% trans 'Create new course subject' %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,16 +1,16 @@
 {% extends "user/base.html" %}
-
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
         <div class="media">
             <div class="media-body ml-2">
                 <h2 class="account-heading">{{ subject.name }}</h2>
-                <label>Decscription</label>
+                <label>{% trans 'Description' %}</label>
                 <p class="text-secondary">{{ subject.description }}</p>
-                <label>Duration</label>
+                <label>{% trans 'Duration' %}</label>
                 <p class="text-secondary">{{ subject.duration }}</p>
-                <label>Trainer</label><br/>
+                <label>{% trans 'Trainer' %}</label><br/>
                 <a class="text-secondary"
                    href="{% url 'view-profile' subject.trainer.id %}"> {{ subject.trainer.first_name }} {{ subject.trainer.last_name }}</a>
             </div>

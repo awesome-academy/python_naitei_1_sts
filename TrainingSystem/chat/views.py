@@ -18,14 +18,13 @@ def room(request, room_name):
     course_trainee_list = TraineeCourseSubject.objects.filter(course_subject__course=course)
     supervisor_list = Supervisor.objects.filter(course=course)
     subject_trainer_list = Subject.objects.filter(coursesubject__course=course)
-    if request.user.role == 0:
-        course_members = set()
-        for supervisor in supervisor_list:
-            course_members.add(supervisor.trainer)
-        for subject_trainer in subject_trainer_list:
-            course_members.add(subject_trainer.trainer)
-        for course_trainee in course_trainee_list:
-            course_members.add(course_trainee.trainee)
+    course_members = set()
+    for supervisor in supervisor_list:
+        course_members.add(supervisor.trainer)
+    for subject_trainer in subject_trainer_list:
+        course_members.add(subject_trainer.trainer)
+    for course_trainee in course_trainee_list:
+        course_members.add(course_trainee.trainee)
 
     if request.user in course_members:
         return render(request, 'chat/room.html', {

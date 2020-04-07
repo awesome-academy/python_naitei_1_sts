@@ -1,0 +1,46 @@
+{% extends 'user/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-10">
+                <h1>{% trans 'CourseSubject List' %}</h1>
+                <a href="{% url 'course_subject_create' %}" class="btn btn-primary">{% trans 'Add' %}</a>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{% trans 'Course' %}</th>
+                        <th scope="col">{% trans 'Subject' %}</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course_subject in course_subjects %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>
+                                <a href="{% url 'course_detail' course_subject.course.pk %}">{{ course_subject.course.name }}</a>
+                            </td>
+                            <td>
+                                {% if user.role == 0 %}
+                                    <a href="{% url 'subject-detail-trainee' course_subject.subject.pk %}">{{ course_subject.subject.name }}</a>
+                                {% elif user.role > 0 %}
+                                    <a href="{% url 'subject-detail-trainer' course_subject.subject.pk %}">{{ course_subject.subject.name }}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'course-subject-update' course_subject.pk %}"
+                                   class="btn btn-primary">{% trans 'Update' %}</a>
+                                <a href="{% url 'course_subject_delete' course_subject.pk %}"
+                                   class="btn btn-danger">{% trans 'Delete' %}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
