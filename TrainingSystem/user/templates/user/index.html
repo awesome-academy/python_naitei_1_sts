@@ -1,0 +1,715 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Training System</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/user/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/user/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/user/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/user/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/user/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/user/style.css">
+
+    <style>
+        #abc select {
+            display: block; /*hide original SELECT element: */
+        }
+
+        .select-selected {
+            background-color: DodgerBlue;
+        }
+
+        /* Style the arrow inside the select element: */
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        /* Point the arrow upwards when the select box is open (active): */
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #fff transparent;
+            top: 7px;
+        }
+
+        /* style the items (options), including the selected item: */
+        .select-items div, .select-selected {
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+        }
+
+        /* Style items (options): */
+        .select-items {
+            position: absolute;
+            background-color: DodgerBlue;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        /* Hide the items when the select box is closed: */
+        .select-hide {
+            display: none;
+        }
+
+        .select-items div:hover, .same-as-selected {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="hero-content">
+    <header class="site-header">
+        <div class="top-header-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-6 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        <div class="header-bar-email d-flex align-items-center">
+                            <i class="fa fa-envelope"></i><a href="#">cskh@trainingsystem.com</a>
+                        </div><!-- .header-bar-email -->
+
+                        <div class="header-bar-text lg-flex align-items-center">
+                            <p><i class="fa fa-phone"></i>001-1234-88888 </p>
+                        </div><!-- .header-bar-text -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-lg-6 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div class="header-bar-search">
+                            <form class="flex align-items-stretch">
+                                <input type="search" placeholder="What would you like to learn?">
+                                <button type="submit" value="" class="flex justify-content-center align-items-center"><i
+                                        class="fa fa-search"></i></button>
+                            </form>
+                        </div><!-- .header-bar-search -->
+
+                        <div class="header-bar-menu">
+                            <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                            </ul>
+                        </div><!-- .header-bar-menu -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container-fluid -->
+        </div><!-- .top-header-bar -->
+
+        <div class="nav-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9 col-lg-3">
+                        <div class="site-branding">
+                            <h1 class="site-title"><a href="index.html" rel="home">Training <span>System</span></a></h1>
+                        </div><!-- .site-branding -->
+                    </div><!-- .col -->
+
+                    <div class="col-3 col-lg-9 flex justify-content-end align-content-center">
+                        <nav class="site-navigation flex justify-content-end align-items-center">
+                            <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <li class="current-menu-item"><a href="{% url 'home' %}"> Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">blog</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+
+                            <div class="hamburger-menu d-lg-none">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div><!-- .hamburger-menu -->
+
+                            <div class="header-bar-cart">
+                                <a href="#" class="flex justify-content-center align-items-center"><span
+                                        aria-hidden="true" class="icon_bag_alt"></span></a>
+                            </div><!-- .header-bar-search -->
+                        </nav><!-- .site-navigation -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .nav-bar -->
+    </header><!-- .site-header -->
+
+    <div class="hero-content-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
+                        <header class="entry-header">
+                            <h4>Get started with online courses</h4>
+                            <h1>best online<br/>Learning system</h1>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content">
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                                anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                accusantium doloremque laudantium</p>
+                        </div><!-- .entry-content -->
+
+                        <footer class="entry-footer read-more">
+                            <a href="#">read more</a>
+                        </footer><!-- .entry-footer -->
+                    </div><!-- .hero-content-wrap -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .hero-content-hero-content-overlay -->
+</div><!-- .hero-content -->
+
+<div class="icon-boxes">
+    <div class="container-fluid">
+        <div class="flex flex-wrap align-items-stretch">
+            <div class="icon-box">
+                <div class="icon">
+                    <span class="ti-user"></span>
+                </div><!-- .icon -->
+
+                <header class="entry-header">
+                    <h2 class="entry-title">User</h2>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    <p>Trang quan ly user</p>
+                </div><!-- .entry-content -->
+
+                <footer class="entry-footer read-more">
+                    {% if user.role == 2 %}
+                        <a href="{% url 'user-list' %}">View more<i class="fa fa-long-arrow-right"></i></a>
+                    {% else %}
+                        <a href="{% url 'view-profile' user.pk %}">View more<i class="fa fa-long-arrow-right"></i></a>
+                    {% endif %}
+                </footer><!-- .entry-footer -->
+            </div><!-- .icon-box -->
+
+            <div class="icon-box">
+                <div class="icon">
+                    <span class="ti-folder"></span>
+                </div><!-- .icon -->
+
+                <header class="entry-header">
+                    <h2 class="entry-title">Subject</h2>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    <p>Trang quan ly subject</p>
+                </div><!-- .entry-content -->
+
+                <footer class="entry-footer read-more">
+                    <a href="{% url 'subject-list' %}">View more<i class="fa fa-long-arrow-right"></i></a>
+                </footer><!-- .entry-footer -->
+            </div><!-- .icon-box -->
+
+            <div class="icon-box">
+                <div class="icon">
+                    <span class="ti-book"></span>
+                </div><!-- .icon -->
+
+                <header class="entry-header">
+                    <h2 class="entry-title">Task</h2>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    <p>Trang quan ly task</p>
+                </div><!-- .entry-content -->
+
+                <footer class="entry-footer read-more">
+                    <a href="{% url 'task-list' %}">View more<i class="fa fa-long-arrow-right"></i></a>
+                </footer><!-- .entry-footer -->
+            </div><!-- .icon-box -->
+
+            <div class="icon-box">
+                <div class="icon">
+                    <span class="ti-world"></span>
+                </div><!-- .icon -->
+
+                <header class="entry-header">
+                    <h2 class="entry-title">Course</h2>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    <p>Trang quan ly course</p>
+                </div><!-- .entry-content -->
+
+                <footer class="entry-footer read-more">
+                    <a href="{% url 'course_list' %}">View more<i class="fa fa-long-arrow-right"></i></a>
+                </footer><!-- .entry-footer -->
+            </div><!-- .icon-box -->
+        </div><!-- .row -->
+    </div><!-- .container-fluid -->
+</div><!-- .icon-boxes -->
+
+<section class="featured-courses horizontal-column courses-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <header class="heading flex justify-content-between align-items-center">
+                    <h2 class="entry-title">New Course</h2>
+
+                    <a class="btn mt-4 mt-sm-0" href="{% url 'course_list' %}">all course</a>
+                </header><!-- .heading -->
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col col-11">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="{{ form.name.id_for_label }}">{% trans 'Name' %}</label>
+                                    <input name="name" type="text" class="form-control"
+                                           id="{{ form.name.id_for_label }}"
+                                           placeholder="{% trans 'Enter name' %}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.description.id_for_label }}">{% trans 'Description' %}</label>
+                                    <textarea name="description" type="text" class="form-control"
+                                              id="{{ form.description.id_for_label }}"
+                                              placeholder="{% trans 'Enter description' %}" rows="8"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.room_name.id_for_label }}">{% trans 'Room name' %}</label>
+                                    <input name="room_name" type="text" class="form-control"
+                                           id="{{ form.room_name.id_for_label }}"
+                                           placeholder="{% trans 'Enter room chat name' %}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.status.id_for_label }}">{% trans 'Status' %}</label>
+                                    <select name="status" class="form-control" id="{{ form.status.id_for_label }}">
+                                        <option value="n" selected>{% trans 'Not yet' %}</option>
+                                        <option value="i">{% trans 'In progress' %}</option>
+                                        <option value="f">{% trans 'Finished' %}</option>
+                                    </select>
+                                </div>
+
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                    </tr>
+                                    </thead>
+                                    {{ coursesubject.management_form }}
+                                    {% for child_form in coursesubject.forms %}
+                                        {% for hidden in child_form.hidden_fields %}
+                                            {{ hidden }}
+                                        {% endfor %}
+                                        <tr class="formset_row">
+                                            {% if messages %}
+                                                <div class="messages">
+                                                    {% for message in messages %}
+                                                        <p>{% if message.tags %} class="alert alert-danger"{% endif %}
+                                                            >{{ message }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            {% for field in child_form.visible_fields %}
+                                                <td>
+                                                    {{ field.errors.as_ul }}
+                                                    {% crispy_field field helper %}
+                                                </td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+
+                                <p>
+                                    <input class="btn-lg btn-outline-success float-right" type="submit"
+                                           value="     Save     ">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- .col -->
+
+            <div class="col-12 col-lg-6">
+
+            </div><!-- .col -->
+
+            <div class="col-12 col-lg-6">
+
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</section><!-- .courses-wrap -->
+
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 align-content-lg-stretch">
+                <header class="heading flex justify-content-between align-items-center">
+                    <h2 class="entry-title">New Subject</h2>
+
+                    <a class="btn mt-4 mt-sm-0" href="{% url 'subject-list' %}">all subject</a>
+                </header><!-- .heading -->
+
+            </div><!-- .row -->
+            <div class="col-11">
+                <form action="{% url 'create-subject' %}" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ subjectform|crispy }}
+                    </fieldset>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Course</th>
+                        </tr>
+                        </thead>
+                        {{ course.management_form }}
+                        {% for child_form in course.forms %}
+                            {% for hidden in child_form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            <tr class="course_formset_row">
+                                {% if messages %}
+                                    <div class="messages">
+                                        {% for message in messages %}
+                                            <p>{% if message.tags %} class="alert alert-danger"{% endif %}
+                                                >{{ message }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {% for field in child_form.visible_fields %}
+                                    <td>
+                                        {{ field.errors.as_ul }}
+                                        {% crispy_field field helper %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <p>
+                        <input class="btn-lg btn-outline-success float-right" type="submit"
+                               value="     Save     ">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div><!-- .container -->
+</section><!-- .about-section -->
+
+<section class="testimonial-section">
+    <!-- Swiper -->
+    <div class="swiper-container testimonial-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
+                            <figure class="user-avatar">
+                                <img src="../../static/user/images/user-1.jpg" alt="">
+                            </figure><!-- .user-avatar -->
+                        </div><!-- .col -->
+
+                        <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
+                            <div class="entry-content">
+                                <p>Together as teachers, students and universities we can help make this education
+                                    available for everyone.</p>
+                            </div><!-- .entry-content -->
+
+                            <div class="entry-footer">
+                                <h3 class="testimonial-user">Hoang Minh Hung - <span>PTIT</span></h3>
+                            </div><!-- .entry-footer -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .swiper-slide -->
+
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 order-2 order-lg-1 flex align-items-center mt-5 mt-lg-0">
+                            <figure class="user-avatar">
+                                <img src="../../static/user/images/user-1.jpg" alt="">
+                            </figure><!-- .user-avatar -->
+                        </div><!-- .col -->
+
+                        <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
+                            <div class="entry-content">
+                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                    mollit anim id est laborum.</p>
+                            </div><!-- .entry-content -->
+
+                            <div class="entry-footer">
+                                <h3 class="testimonial-user">Vu Van Duc - <span>PTIT</span></h3>
+                            </div><!-- .entry-footer -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .swiper-slide -->
+
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 flex order-2 order-lg-1 align-items-center mt-5 mt-lg-0">
+                            <figure class="user-avatar">
+                                <img src="../../static/user/images/user-1.jpg" alt="">
+                            </figure><!-- .user-avatar -->
+                        </div><!-- .col -->
+
+                        <div class="col-12 col-lg-6 order-1 order-lg-2 content-wrap h-100">
+                            <div class="entry-content">
+                                <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
+                                    injected humour.</p>
+                            </div><!-- .entry-content -->
+
+                            <div class="entry-footer">
+                                <h3 class="testimonial-user">Tran Quang Khai - <span>PTIT</span></h3>
+                            </div><!-- .entry-footer -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .swiper-slide -->
+        </div><!-- .swiper-wrapper -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+                    <div class="swiper-pagination position-relative flex justify-content-center align-items-center"></div>
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .testimonial-slider -->
+</section><!-- .testimonial-section -->
+
+<section class="home-gallery">
+    <div class="gallery-wrap flex flex-wrap">
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/a.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/b.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid2x2">
+            <a href="#"><img src="../../static/user/images/c.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/d.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/e.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid2x1">
+            <a href="#"><img src="../../static/user/images/g.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid2x1">
+            <a href="#"><img src="../../static/user/images/h.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/i.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid2x2 ">
+            <a href="#"><img src="../../static/user/images/j.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/k.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/l.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid2x1">
+            <a href="#"><img src="../../static/user/images/m.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid3x1">
+            <a href="#"><img src="../../static/user/images/n.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+
+        <div class="gallery-grid gallery-grid1x1">
+            <a href="#"><img src="../../static/user/images/o.jpg" alt=""></a>
+        </div><!-- .gallery-grid -->
+    </div><!-- .gallery-wrap -->
+</section><!-- .home-gallery -->
+
+<div class="clients-logo">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                <div class="logo-wrap">
+                    <img src="../../static/user/images/logo-1.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/user/images/logo-2.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/user/images/logo-3.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/user/images/logo-4.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/user/images/logo-5.png" alt="">
+                </div><!-- .logo-wrap -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- .clients-logo -->
+
+<footer class="site-footer">
+    <div class="footer-widgets">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="foot-about">
+                        <a class="foot-logo" href="#"><img src="../../static/user/images/foot-logo.png" alt=""></a>
+
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia dese mollit anim id
+                            est laborum. </p>
+
+                        <p class="footer-copyright">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .foot-about -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                    <div class="foot-contact">
+                        <h2>Contact Us</h2>
+
+                        <ul>
+                            <li>Email: info.deertcreative@gmail.com</li>
+                            <li>Phone: (+88) 111 555 666</li>
+                            <li>Address: 40 Baria Sreet 133/2 NewYork City, US</li>
+                        </ul>
+                    </div><!-- .foot-contact -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                    <div class="quick-links flex flex-wrap">
+                        <h2 class="w-100">Quick Links</h2>
+
+                        <ul class="w-50">
+                            <li><a href="#">About </a></li>
+                            <li><a href="#">Terms of Use </a></li>
+                            <li><a href="#">Privacy Policy </a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+
+                        <ul class="w-50">
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Forums</a></li>
+                            <li><a href="#">Language Packs</a></li>
+                            <li><a href="#">Release Status</a></li>
+                        </ul>
+                    </div><!-- .quick-links -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                    <div class="follow-us">
+                        <h2>Follow Us</h2>
+
+                        <ul class="follow-us flex flex-wrap align-items-center">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div><!-- .quick-links -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .footer-widgets -->
+
+    <div class="footer-bar">
+        <div class="container">
+            <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="download-apps flex flex-wrap justify-content-center justify-content-lg-start align-items-center">
+                        <a href="#"><img src="../../static/user/images/app-store.png" alt=""></a>
+                        <a href="#"><img src="../../static/user/images/play-store.png" alt=""></a>
+                    </div><!-- .download-apps -->
+
+                </div>
+
+                <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+                    <div class="footer-bar-nav">
+                        <ul class="flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                            <li><a href="#">DPA</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div><!-- .footer-bar-nav -->
+                </div><!-- .col-12 -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .footer-bar -->
+</footer><!-- .site-footer -->
+
+<script type='text/javascript' src='../../static/user/js/jquery.js'></script>
+<script type='text/javascript' src='../../static/user/js/swiper.min.js'></script>
+<script type='text/javascript' src='../../static/user/js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='../../static/user/js/jquery.collapsible.min.js'></script>
+<script type='text/javascript' src='../../static/user/js/custom.js'></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: '+',
+        deleteText: 'X',
+        prefix: 'coursesubject_set'
+    });
+    $('.course_formset_row').formset({
+        addText: '+',
+        deleteText: 'X',
+        prefix: 'course_set'
+    });
+    $('.add-row').addClass('btn-sm btn-primary');
+    $('.delete-row').addClass('btn-sm btn-danger');
+    $('.add-row').click(function () {
+        var elements = document.getElementsByClassName('delete-row');
+        var i;
+        for (i = 0; i < elements.length; i++) {
+            elements[i].classList.add('btn-sm');
+            elements[i].classList.add('btn-danger');
+        }
+    });
+</script>
+</body>
+</html>

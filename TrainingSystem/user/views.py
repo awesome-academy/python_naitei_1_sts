@@ -1,21 +1,25 @@
+from crispy_forms.helper import FormHelper
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Permission
 from django.contrib.sites.shortcuts import get_current_site
+from django.db import transaction
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template.context_processors import request
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+from course.forms import CourseSubjectFormset, SubjectFormset, SubjectCreateForm
 from .forms import UserRegisterForm, UserUpdateForm, UpdateTrainerForm
-from django.views import View
+from django.views import View, generic
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import User
 from .token import account_activation_token
-from course.models import Course
+from course.models import Course, Subject
 
 from django.utils.translation import gettext as _
 import json
@@ -25,7 +29,13 @@ import json
 
 
 def home(request):
-    return render(request, 'user/base.html')
+    return render(request, 'user/index.html')
+
+
+class UserListView(generic.ListView):
+    model = User
+    context_object_name = 'users'
+    template_name = 'user/user_list.html'
 
 
 def register(request):
@@ -143,9 +153,74 @@ def autocompleteModel(request):
     if request.is_ajax():
         keyword = request.POST.get('inputSearch')
         courses = Course.objects.filter(name__icontains=keyword)
-        results = map(lambda x: (x.name, '#'), courses)
+        results = map(lambda x: (x.name, x.get_absolute_url()), courses)
         data = json.dumps(list(results))
     else:
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+
+class FormsetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(FormsetHelper, self).__init__(*args, **kwargs)
+        self.form_tag = False
+        self.form_show_labels = False
+
+
+class CourseCreate(generic.CreateView):
+    model = Course
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+    template_name = 'user/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        if self.request.POST:
+
+            context['coursesubject'] = CourseSubjectFormset(self.request.POST)
+        else:
+            context['coursesubject'] = CourseSubjectFormset()
+            context['course'] = SubjectFormset()
+            context['subjectform'] = SubjectCreateForm()
+            context['helper'] = FormsetHelper()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        coursesubject = context['coursesubject']
+        with transaction.atomic():
+            if coursesubject.is_valid():
+                self.object = form.save()
+                coursesubject.instance = self.object
+                coursesubject.save()
+            else:
+                messages.error(self.request, 'Subject khong hop le')
+                return redirect('home')
+        return super().form_valid(form)
+
+
+class SubjectCreate(generic.CreateView):
+    model = Subject
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+    # template_name = 'user/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        if self.request.POST:
+            context['course'] = SubjectFormset(self.request.POST)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        course = context['course']
+        with transaction.atomic():
+            if course.is_valid():
+                self.object = form.save()
+                course.instance = self.object
+                course.save()
+            else:
+                messages.error(self.request, 'Course khong hop le')
+                return redirect('home')
+        return super().form_valid(form)

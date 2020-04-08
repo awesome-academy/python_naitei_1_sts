@@ -4,12 +4,14 @@ from django.db import models
 from django.urls import reverse
 
 from user.models import User
+
+
 # Create your models here.
 
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=255, null=True)
     STATUS = (
         ('i', 'in progress'),
         ('f', 'finish'),
@@ -21,10 +23,13 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return '/course/' + str(self.pk)
+
 
 class Subject(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=255, null=True)
     duration = models.PositiveIntegerField()
     trainer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
