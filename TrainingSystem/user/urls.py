@@ -10,5 +10,6 @@ urlpatterns = [
     path('trainer/<int:pk>/', AprrovedTrainer.as_view(), name='add-trainer'),
     path('search/', Search.as_view(), name='search'),
     path('ajax_calls/search/', views.autocompleteModel, name='auto_search'),
-
+    path('', views.UserListView.as_view(), name='user-list'),
+    path('subject/create', views.SubjectCreate.as_view(), name='create-subject'),
 ]

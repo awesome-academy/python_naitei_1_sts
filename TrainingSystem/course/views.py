@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.sessions.models import Session
 from django.db.models.expressions import RawSQL
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
@@ -20,9 +21,13 @@ class CourseDetailView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # print(kwargs)
         user = self.request.user
         course = kwargs['object']
+        try:
+            trainee_course_subject_active = TraineeCourseSubject.objects.filter(course_subject__course=course, is_active=True)[0]
+            context['subject'] = trainee_course_subject_active.course_subject.subject
+        except:
+            context['subject'] = None
         if user.role == 0:
             try:
                 trainee_course_subject = get_object_or_404(TraineeCourseSubject, trainee=user,
@@ -32,7 +37,7 @@ class CourseDetailView(LoginRequiredMixin, generic.DetailView):
                 trainee_course_subject = None
             if trainee_course_subject is not None:
                 context['status'] = trainee_course_subject
-        course_update_form = CourseUpdateForm()
+        course_update_form = CourseUpdateForm(instance=course)
         context['course_update_form'] = course_update_form
         return context
 
@@ -45,6 +50,8 @@ class CourseDetailView(LoginRequiredMixin, generic.DetailView):
             course.status = form.cleaned_data['status']
             course.room_name = form.cleaned_data['room_name']
             course.save()
+            return redirect("course_detail", pk=kwargs['pk'])
+        else:
             return redirect("course_detail", pk=kwargs['pk'])
 
 
@@ -179,7 +186,7 @@ class SubjectCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Cre
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
             duration = form.cleaned_data['duration']
-            trainer = self.request.user
+            trainer = form.cleaned_data['trainer']
             subject = Subject(name=name, description=description, duration=duration, trainer=trainer)
             subject.save()
 
@@ -247,6 +254,8 @@ class CourseCreateView(LoginRequiredMixin, generic.CreateView):
             course = form.save(commit=False)
             course.save()
             return redirect('course_list')
+        else:
+            return redirect('course_create')
 
 
 class CourseSubjectCreateView(LoginRequiredMixin, generic.CreateView):
@@ -327,14 +336,18 @@ def course_subject_active(request, pk):
     trainee_course_subject_list = TraineeCourseSubject.objects.filter(course_subject=course_subject)
     trainee_course_subject_active = TraineeCourseSubject.objects.filter(course_subject__course=course_subject.course,
                                                                         is_active=True)
-    for t in trainee_course_subject_active:
-        t.is_active = False
-        t.status = 'f'
-        t.save()
-    for trainee_course_subject in trainee_course_subject_list:
-        trainee_course_subject.is_active = True
-        trainee_course_subject.status = 'i'
-        trainee_course_subject.save()
+    # print(trainee_course_subject_active)
+    if len(trainee_course_subject_list) > 0:
+        for t in trainee_course_subject_active:
+            t.is_active = False
+            t.status = 'f'
+            t.save()
+        for trainee_course_subject in trainee_course_subject_list:
+            trainee_course_subject.is_active = True
+            trainee_course_subject.status = 'i'
+            trainee_course_subject.save()
+    else:
+        messages.error(request, 'Mon hoc ' + course_subject.subject.name + ' hien chua co hoc vien')
     return redirect('course_detail', course_subject.course.pk)
 
 

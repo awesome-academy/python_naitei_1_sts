@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="mt-4 mb-4">
+        <h1 class="mr-4" style="display: inline;">{% trans 'User List' %}</h1>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">{% trans 'Username' %}</th>
+            <th scope="col">{% trans 'First name' %}</th>
+            <th scope="col">{% trans 'Last name' %}</th>
+            <th scope="col">{% trans 'DoB' %}</th>
+            <th scope="col">{% trans 'Email' %}</th>
+            <th scope="col">{% trans 'Phone' %}</th>
+            <th scope="col">{% trans 'Role' %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a style="color: black;" href="{% url 'add-trainer' user.pk %}">{{ user.username }}</a></td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.dob }}</td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    {% if user.role == 0 %}Trainee
+                    {% elif user.role == 1 %}Trainer
+                    {% elif user.role == 2 %}Admin
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

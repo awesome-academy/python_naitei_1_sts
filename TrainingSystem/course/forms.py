@@ -1,6 +1,7 @@
 from django import forms
 from .models import Subject, Course, CourseSubject
 from django.db.models import Q
+from django.forms import inlineformset_factory
 
 from course.models import TraineeCourseSubject, Supervisor
 from user.models import User
@@ -10,7 +11,6 @@ class SubjectCreateForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = '__all__'
-        exclude = ('trainer',)
 
 
 class SubjectUpdateForm(forms.ModelForm):
@@ -49,11 +49,24 @@ class CourseUpdateForm(forms.ModelForm):
         model = Course
         fields = '__all__'
 
+    def clean_room_name(self):
+        room_name = self.cleaned_data['room_name']
+        if ' ' in room_name:
+            raise forms.ValidationError("Room name can't contain space")
+            # self.add_error('room_name', "Room name can't contain space")
+        return room_name
+
 
 class CourseCreateForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+
+    def clean_room_name(self):
+        room_name = self.cleaned_data['room_name']
+        if ' ' in room_name:
+            raise forms.ValidationError("Room name can't contain space")
+        return room_name
 
 
 class CourseSubjectCreateForm(forms.ModelForm):
@@ -66,3 +79,7 @@ class CourseSubjectUpdateForm(forms.ModelForm):
     class Meta:
         model = CourseSubject
         fields = '__all__'
+
+
+CourseSubjectFormset = inlineformset_factory(Course, CourseSubject, fields=('subject',), extra=1)
+SubjectFormset = inlineformset_factory(Subject, CourseSubject, fields=('course',), extra=1)
