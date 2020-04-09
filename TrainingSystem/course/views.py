@@ -193,7 +193,8 @@ class SubjectCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Cre
             return redirect('subject-list')
 
 
-class SubjectUpdateView(LoginRequiredMixin, generic.UpdateView):
+class SubjectUpdateView(LoginRequiredMixin,PermissionRequiredMixin, generic.UpdateView):
+    permission_required = 'user.trainer_permission'
     model = Subject
     form_class = SubjectUpdateForm
     template_name_suffix = '_update_form'
@@ -203,7 +204,8 @@ class SubjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Subject
 
 
-class SubjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+class SubjectDeleteView(LoginRequiredMixin,PermissionRequiredMixin, generic.DeleteView):
+    permission_required = 'user.trainer_permission'
     model = Subject
     success_url = reverse_lazy('subject-list')
 
@@ -238,12 +240,14 @@ class CourseListView(LoginRequiredMixin, generic.ListView):
         return course
 
 
-class CourseDeleteView(LoginRequiredMixin, generic.DeleteView):
+class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
+    permission_required = 'user.trainer_permission'
     model = Course
     success_url = reverse_lazy('course_list')
 
 
-class CourseCreateView(LoginRequiredMixin, generic.CreateView):
+class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
+    permission_required = 'user.trainer_permission'
     model = Course
     form_class = CourseCreateForm
     success_url = reverse_lazy('course_list')

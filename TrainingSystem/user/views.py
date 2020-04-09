@@ -32,7 +32,8 @@ def home(request):
     return render(request, 'user/index.html')
 
 
-class UserListView(generic.ListView):
+class UserListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    permission_required = 'user.admin_permission'
     model = User
     context_object_name = 'users'
     template_name = 'user/user_list.html'
@@ -108,7 +109,7 @@ class OtherProfile(LoginRequiredMixin, View):
 
 
 class AprrovedTrainer(LoginRequiredMixin, PermissionRequiredMixin, View):
-    permission_required = 'admin_permission'
+    permission_required = 'user.admin_permission'
 
     def get(self, request, pk):
         user = User.objects.get(pk=pk)
