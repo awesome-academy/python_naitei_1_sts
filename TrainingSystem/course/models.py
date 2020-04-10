@@ -11,7 +11,7 @@ from user.models import User
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=255, null=True)
+    description = models.TextField(max_length=255, null=True, blank=True)
     STATUS = (
         ('i', 'in progress'),
         ('f', 'finish'),
@@ -29,9 +29,9 @@ class Course(models.Model):
 
 class Subject(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=255, null=True)
+    description = models.TextField(max_length=255, null=True, blank=True)
     duration = models.PositiveIntegerField()
-    trainer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    trainer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
